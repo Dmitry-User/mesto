@@ -1,2 +1,16 @@
+@import url(../vendor/inter.css);
 @import url(../vendor/normalize.css);
 
+@import url(../blocks/root/root.css);
+@import url(../blocks/wrapper/wrapper.css);
+
+.header {
+  width: 100%;
+  min-height: 74px;
+  border-bottom: 1px solid #545454;
+}
+
+.logo {
+  width: 142px;
+  height: 33px;
+}
