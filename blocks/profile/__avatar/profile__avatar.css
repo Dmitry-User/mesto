@@ -3,3 +3,9 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .profile__avatar {
+    margin: 0 0 26px 0;
+  }
+}
