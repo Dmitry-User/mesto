@@ -13,6 +13,7 @@
 @import url(../blocks/profile/__button-add/profile__button-add.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__description/profile__description.css);
+@import url(../blocks/profile/__description-top/porofile__description-top.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 
@@ -32,7 +33,47 @@
 
 
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+}
+.popup__container {
+  max-width: 430px;
+  padding: 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.popup__title {
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.popup__name {
+}
+.popup__job {
+}
 
+.popup__button-save {
+  padding: 14px 0;
+  border: none;
+  background-color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #fff;
+}
 
 
 
