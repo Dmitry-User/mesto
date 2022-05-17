@@ -8,3 +8,11 @@
   background-color: #fff;
   border-radius: 10px;
 }
+
+@media (max-width: 576px) {
+  .popup__container {
+    min-width: 282px;
+    margin: 0 19px;
+    padding: 24px 22px;
+  }
+}
