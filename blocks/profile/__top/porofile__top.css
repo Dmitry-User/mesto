@@ -1,11 +1,11 @@
-.porofile__description-top {
+.porofile__top {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
 @media (max-width: 768px) {
-  .porofile__description-top {
+  .porofile__top {
     justify-content: center;
   }
 }
