@@ -1,4 +1,4 @@
-.profile__subtitle {
+.profile__about {
   max-width: 350px;
   margin: 9px 0 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -11,13 +11,13 @@
 }
 
 @media (max-width: 768px) {
-  .profile__subtitle {
+  .profile__about {
     text-align: center;
   }
 }
 
 @media (max-width: 576px) {
-  .profile__subtitle {
+  .profile__about {
     font-size: 14px;
   }
 }
