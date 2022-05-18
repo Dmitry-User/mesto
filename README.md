@@ -13,4 +13,4 @@
 * Grid Layout
 * Javascript
 
-[Ссылка на сайт **Место**](https://dmitry-user.github.io/russian-travel/)
+[Ссылка на сайт **Место**](https://dmitry-user.github.io/mesto/)
