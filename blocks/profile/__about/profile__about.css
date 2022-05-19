@@ -1,9 +1,9 @@
 .profile__about {
   max-width: 100%;
-  margin: 9px 0 0;
+  margin: 8px 0 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 18px;
-  line-height: 1.22;
+  line-height: 22px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -19,5 +19,6 @@
 @media (max-width: 576px) {
   .profile__about {
 	  font-size: 14px;
+		line-height: 17px;
   }
 }

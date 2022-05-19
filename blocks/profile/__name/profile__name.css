@@ -4,18 +4,25 @@
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 42px;
-  line-height: 1.14;
-  text-align: center;
+  line-height: 48px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .profile__name {
+		max-width: 240px;
+		margin: 0 auto;
+		font-size: 34px;
+		line-height: 42px;
+  }
+}
 @media (max-width: 576px) {
   .profile__name {
 		max-width: 189px;
     font-size: 27px;
-    line-height: 1.22;
+    line-height: 33px;
   }
 }
