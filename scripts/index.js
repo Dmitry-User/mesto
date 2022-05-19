@@ -22,7 +22,7 @@ function formSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
-  closePopup(popup);
+  closePopup();
 }
 
 editButton.addEventListener('click', openPopup);
