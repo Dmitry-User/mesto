@@ -13,15 +13,15 @@
 
 @media (max-width: 768px) {
   .profile__name {
-		max-width: 240px;
-		margin: 0 auto;
-		font-size: 34px;
-		line-height: 42px;
+    max-width: 240px;
+    margin-left: 46px;
+    font-size: 34px;
+    line-height: 42px;
   }
 }
 @media (max-width: 576px) {
   .profile__name {
-		max-width: 189px;
+    max-width: 189px;
     font-size: 27px;
     line-height: 33px;
   }

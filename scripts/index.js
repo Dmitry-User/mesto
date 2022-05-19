@@ -10,7 +10,7 @@ const popup = document.querySelector('.popup');
 
 function openPopup() {
   popup.classList.add('popup_opened');
-	nameInput.value = profileName.textContent;
+  nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
 }
 
@@ -22,7 +22,7 @@ function formSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
-	closePopup(popup);
+  closePopup(popup);
 }
 
 editButton.addEventListener('click', openPopup);
