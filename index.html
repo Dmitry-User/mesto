@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto Russia</title>
+  <title>Место Россия</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="root">
   <div class="wrapper">
     <header class="header">
-      <img src="./images/logo.svg" alt="Логотип" class="logo">
+      <img src="./images/logo.svg" alt="Логотип" class="header__logo">
     </header>
     <main class="content">
       <section class="profile">
@@ -18,72 +18,72 @@
         <div class="profile__description">
           <div class="profile__top">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__button-edit button-hover"></button>
+            <button type="button" aria-label="Редактировать" class="profile__button-edit button-hover"></button>
           </div>
           <p class="profile__about">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__button-add button-hover"></button>
+        <button type="button" aria-label="Добавить" class="profile__button-add button-hover"></button>
       </section>
-      <div class="cards">
+      <section class="cards">
         <article class="card">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Карачаевск</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/elbrus.jpg" alt="Эльбрус" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/dombai.jpg" alt="Домбай" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/elbrus.jpg" alt="Эльбрус" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/dombai.jpg" alt="Домбай" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
           <div class="card__description">
             <h2 class="card__title">Карачаево-Черкесия</h2>
-            <button type="button" class="card__button-like"></button>
+            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
           </div>
         </article>
-      </div>
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
-      <button type="button" class="popup__button-close button-hover"></button>
+      <button type="button" aria-label="Закрыть" class="popup__button-close button-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="popup" class="popup__form">
-        <input type="text" class="popup__input popup__input_name">
-        <input type="text" class="popup__input popup__input_about">
-        <button type="submit" value="" class="popup__button-save">Сохранить</button>
+        <input type="text" name="name" class="popup__input popup__input_type_name">
+        <input type="text" name="about" class="popup__input popup__input_type_about">
+        <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Сохранить</button>
       </form>
     </div>
-  </section>
+  </div>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
