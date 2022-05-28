@@ -9,12 +9,13 @@
 
 @media (max-width: 928px) {
   .footer__copyright {
-    margin: 0 19px;
+    margin: 0 27px;
   }
 }
 
 @media (max-width: 576px) {
   .footer__copyright {
+    margin: 0 19px;
     font-size: 14px;
     line-height: 1.2;
   }

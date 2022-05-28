@@ -6,6 +6,12 @@
 
 @media (max-width: 928px) {
   .cards {
+    padding: 0 27px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cards {
     padding: 0 19px;
   }
 }
