@@ -40,6 +40,9 @@ initialCards.forEach(function (item) {
 
   cardElement.querySelector('.card__image').src = item.link;
   cardElement.querySelector('.card__title').textContent = item.name;
+  cardElement.querySelector('.card__button-like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('card__button-like_active');
+  })
   cards.append(cardElement);
 });
 
