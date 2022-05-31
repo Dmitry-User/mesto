@@ -6,7 +6,7 @@
   background-color: #000;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 18px;
-  line-height: 1.22;
+  line-height: 22px;
   color: #fff;
   transition: opacity .2s ease-in-out;
   cursor: pointer;
@@ -20,5 +20,6 @@
   .popup__button-save {
     margin: 43px 0 0 0;
     font-size: 14px;
+    line-height: 17px;
   }
 }
