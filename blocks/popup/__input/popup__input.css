@@ -1,6 +1,6 @@
 .popup__input {
   box-sizing: border-box;
-  padding: 0 0 10px 0;
+  padding: 10px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
@@ -9,5 +9,5 @@
   line-height: 17px;
 }
 .popup__input:not(:last-of-type) {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }

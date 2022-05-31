@@ -3,4 +3,6 @@
   min-height: 282px;
   object-fit: cover;
   background-color: #e2e2e2; /* если изображение не загрузится */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
 }
