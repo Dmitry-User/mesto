@@ -8,6 +8,7 @@ const addButton = document.querySelector('.profile__button-add');
 const closePopupButton = document.querySelector('.popup__button-close');
 const popup = document.querySelector('.popup');
 const cards = document.querySelector('.cards');
+
 const initialCards = [
   {
     name: 'Архыз',
