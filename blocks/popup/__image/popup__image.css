@@ -1,6 +1,6 @@
 .popup__image {
-  width: 75vw;
-  height: 75vh;
+  max-width: 75vw;
+  max-height: 75vh;
   vertical-align: top;
   background-color: #e2e2e2; /* если изображение не загрузится */
   font-family: 'Inter', Arial, Helvetica, sans-serif;
