@@ -5,4 +5,10 @@
   background-color: #e2e2e2; /* если изображение не загрузится */
   font-family: Arial, Helvetica, sans-serif;
   color: #000;
+  cursor: pointer;
+  transition: opacity .2s linear;;
+}
+
+.card__image:hover {
+  opacity: .6;
 }
