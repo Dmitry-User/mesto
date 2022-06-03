@@ -10,6 +10,7 @@
 </head>
 
 <body class="root">
+  
   <div class="wrapper">
     <header class="header">
       <img src="./images/logo.svg" alt="Логотип" class="header__logo">
@@ -26,56 +27,13 @@
         </div>
         <button type="button" aria-label="Добавить" class="profile__button-add button-hover"></button>
       </section>
-      <section class="cards">
-        <!-- <article class="card">
-          <button type="button" class="card__button-delete"></button>
-          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Карачаевск</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/dombai.jpg" alt="Домбай" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/dombai.jpg" alt="Домбай" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
-          <div class="card__description">
-            <h2 class="card__title">Карачаево-Черкесия</h2>
-            <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
-          </div>
-        </article> -->
-      </section>
+      <section class="cards"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <div class="popup popup_value_edit-profile">
     <div class="popup__container-form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_edit-profile button-hover"></button>
@@ -87,6 +45,7 @@
       </form>
     </div>
   </div>
+
   <div class="popup popup_value_add-card">
     <div class="popup__container-form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_add-card button-hover"></button>
@@ -98,6 +57,7 @@
       </form>
     </div>
   </div>
+
   <div class="popup popup_value_full-image">
     <div class="popup__container-figure">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_full-image button-hover"></button>
@@ -107,6 +67,7 @@
       </figure>
     </div>
   </div>
+
   <template class="card-template">
     <article class="card">
       <button type="button" aria-label="Удалить карточку" class="card__button-delete"></button>
@@ -117,6 +78,7 @@
       </div>
     </article>
   </template>
+
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>

@@ -13,7 +13,7 @@ const fullImagePopup = document.querySelector('.popup_value_full-image');
 const closefullImagePopup = fullImagePopup.querySelector('.popup__button-close_type_full-image');
 
 const fullImageCaption = fullImagePopup.querySelector('.popup__image-caption');
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 const cards = document.querySelector('.cards');
 
 
@@ -79,10 +79,6 @@ initialCards.forEach(addCard);
 //   }
 // });
 
-
-// cardElement.querySelector('.card__button-like').addEventListener('click', function(evt) {
-  //   evt.target.classList.toggle('card__button-like_active');
-  // })
 
 const formSubmit = e => {
   e.preventDefault();
