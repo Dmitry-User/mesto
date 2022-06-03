@@ -1,14 +1,8 @@
 .card__image {
   width: 100%;
-  min-height: 282px;
+  height: 282px;
   object-fit: cover;
   background-color: #e2e2e2; /* если изображение не загрузится */
-  font-family: Arial, Helvetica, sans-serif;
-  color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif; /* стиль для атрибута Alt*/
   cursor: pointer;
-  transition: opacity .2s linear;;
-}
-
-.card__image:hover {
-  opacity: .6;
 }
