@@ -40,7 +40,7 @@
     <div class="popup__container-form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_edit-profile button-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="popup" class="popup__form">
+      <form name="popup" class="popup__form popup__form_edit-profile">
         <input type="text" name="name" class="popup__input popup__input_type_name">
         <input type="text" name="about" class="popup__input popup__input_type_about">
         <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Сохранить</button>
@@ -52,9 +52,9 @@
     <div class="popup__container-form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_add-card button-hover"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="popup" class="popup__form">
-        <input type="text" name="name" placeholder="Название" class="popup__input popup__input_type_name">
-        <input type="text" name="about" placeholder="Ссылка на картинку" class="popup__input popup__input_type_about">
+      <form name="popup" class="popup__form popup__form_add-card">
+        <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_type_name">
+        <input type="text" name="about" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
         <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Создать</button>
       </form>
     </div>
