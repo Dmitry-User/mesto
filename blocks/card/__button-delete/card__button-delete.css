@@ -8,7 +8,6 @@
   background-image: url(../../../images/basket_icon.svg);
   background-color: transparent;
   border: none;
-  z-index: 1;
   cursor: pointer;
   transition: opacity .2s ease-in-out;
 }
