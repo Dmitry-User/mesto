@@ -81,10 +81,15 @@ formAddCardElement.addEventListener('submit', function(e) {
     link: linkAddCardInput.value
   };
 
-  addCard(newData);
-  nameAddCardInput.value = '';
-  linkAddCardInput.value = '';
-  closePopup(popupAddCard);
+  if (linkAddCardInput.value.startsWith('https://')) {
+    addCard(newData);
+    nameAddCardInput.value = null;
+    linkAddCardInput.value = null;
+    closePopup(popupAddCard);
+  } else {
+    nameAddCardInput.value = null;
+    linkAddCardInput.value = null;
+  }  
 });
 
 
