@@ -5,8 +5,6 @@
  * добовлять, удалять фотографии
  * ставить лайки
 
-[![Место](https://user-images.githubusercontent.com/101800268/171993443-1f168908-5e86-4367-96cd-769d9e118dcb.jpg)](https://dmitry-user.github.io/mesto/)
-
 ### Технологии
 * HTML5
 * CSS3
@@ -15,4 +13,6 @@
 * Grid Layout
 * Javascript
 
-[Ссылка на проект **Место**](https://dmitry-user.github.io/mesto/)
+[![Место](https://user-images.githubusercontent.com/101800268/171993443-1f168908-5e86-4367-96cd-769d9e118dcb.jpg)](https://dmitry-user.github.io/mesto/)
+
+<!-- [Ссылка на проект **Место**](https://dmitry-user.github.io/mesto/) -->
