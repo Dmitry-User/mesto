@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 10px 0;
   border: none;
+  background: transparent;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -11,4 +12,9 @@
 
 .popup__input:not(:last-of-type) {
   margin-bottom: 20px;
+}
+
+/* для Chrome (убирает серый фон инпута) */
+input:-webkit-autofill {
+  -webkit-background-clip: text;
 }
