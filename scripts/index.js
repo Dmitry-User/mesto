@@ -18,7 +18,7 @@ const addCardButton = document.querySelector('.profile__button-add');
 const closePopupAddCard = document.querySelector('.popup__button-close_type_add-card');
 
 const popupFullImage = document.querySelector('.popup_value_full-image');
-const fullImage = popupFullImage.querySelector('.popup__image');
+const fullImageElement = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 const closePopupFullImage = popupFullImage.querySelector('.popup__button-close');
 
@@ -36,7 +36,8 @@ const handleDeleteButton = e => {
 };
 
 const handleFullImagePopup = e => {
-  fullImage.src = e.target.src;
+  fullImageElement.src = e.target.src;
+  fullImageElement.alt = e.target.alt;
   fullImageCaption.textContent = e.target.alt;
   openPopup(popupFullImage);
 };
