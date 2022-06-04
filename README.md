@@ -5,8 +5,6 @@
  * добовлять, удалять фотографии
  * ставить лайки
 
-![Mesto](./../images/preview.jpg)
-
 ### Технологии
 * HTML5
 * CSS3
@@ -15,4 +13,4 @@
 * Grid Layout
 * Javascript
 
-[Ссылка на сайт **Место**](https://dmitry-user.github.io/mesto/)
+[Ссылка на проект **Место**](https://dmitry-user.github.io/mesto/)
