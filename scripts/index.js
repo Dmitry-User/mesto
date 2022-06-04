@@ -22,7 +22,6 @@ const fullImage = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 const closePopupFullImage = popupFullImage.querySelector('.popup__button-close');
 
-const imageCard = document.querySelector('.card__image');
 const cards = document.querySelector('.cards');
 
 const openPopup = popupElement => popupElement.classList.add('popup_opened');
@@ -60,6 +59,12 @@ function createCard(item) {
   return cardElement;
 }
 
+function convertNameAddCardInput(text) {
+  text = nameAddCardInput.value;
+  const newText = text[0].toUpperCase() + text.toLowerCase().slice(1);
+  nameAddCardInput.value = newText;
+}
+
 const addCard = (item) => cards.prepend(createCard(item));
 
 initialCards.forEach(addCard);
@@ -72,26 +77,32 @@ formEditProfileElement.addEventListener('submit', function(e) {
   closePopup(popupEditProfile);
 });
 
-
 formAddCardElement.addEventListener('submit', function(e) {
   e.preventDefault();
-
-  const newData = {
+  convertNameAddCardInput();
+  
+  const newDataCard = {
     name: nameAddCardInput.value,
     link: linkAddCardInput.value
   };
 
-  if (linkAddCardInput.value.startsWith('https://')) {
-    addCard(newData);
+  const resetInputForm = () => {
     nameAddCardInput.value = null;
     linkAddCardInput.value = null;
+  };
+
+  if (linkAddCardInput.value.startsWith('http')) {
+    addCard(newDataCard);
+    resetInputForm();
     closePopup(popupAddCard);
   } else {
-    nameAddCardInput.value = null;
-    linkAddCardInput.value = null;
-  }  
+    resetInputForm();
+  }
 });
 
+addCardButton.addEventListener('click', e => openPopup(popupAddCard));
+
+closePopupAddCard.addEventListener('click', e => closePopup(popupAddCard));
 
 editProfileButton.addEventListener('click', e => {
   openPopup(popupEditProfile);
@@ -100,9 +111,5 @@ editProfileButton.addEventListener('click', e => {
 });
 
 closePopupEditProfile.addEventListener('click', e => closePopup(popupEditProfile));
-
-addCardButton.addEventListener('click', e => openPopup(popupAddCard));
-
-closePopupAddCard.addEventListener('click', e => closePopup(popupAddCard));
 
 closePopupFullImage.addEventListener('click', e => closePopup(popupFullImage));
