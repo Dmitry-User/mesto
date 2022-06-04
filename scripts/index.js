@@ -67,6 +67,11 @@ function convertNameAddCardInput(text) {
 
 const addCard = (item) => cards.prepend(createCard(item));
 
+const resetFormAddCardInput = () => {
+  nameAddCardInput.value = null;
+  linkAddCardInput.value = null;
+};
+
 initialCards.forEach(addCard);
 
 
@@ -86,23 +91,21 @@ formAddCardElement.addEventListener('submit', function(e) {
     link: linkAddCardInput.value
   };
 
-  const resetInputForm = () => {
-    nameAddCardInput.value = null;
-    linkAddCardInput.value = null;
-  };
-
   if (linkAddCardInput.value.startsWith('http')) {
     addCard(newDataCard);
-    resetInputForm();
+    resetFormAddCardInput();
     closePopup(popupAddCard);
   } else {
-    resetInputForm();
+    resetFormAddCardInput();
   }
 });
 
 addCardButton.addEventListener('click', e => openPopup(popupAddCard));
 
-closePopupAddCard.addEventListener('click', e => closePopup(popupAddCard));
+closePopupAddCard.addEventListener('click', e => {
+  resetFormAddCardInput();
+  closePopup(popupAddCard);
+});
 
 editProfileButton.addEventListener('click', e => {
   openPopup(popupEditProfile);

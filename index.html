@@ -17,7 +17,7 @@
     </header>
 
     <main class="content">
-      <section class="profile">
+      <section class="profile" aria-label="Секция профиль">
         <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
         <div class="profile__description">
           <div class="profile__top">
@@ -28,7 +28,7 @@
         </div>
         <button type="button" aria-label="Добавить" class="profile__button-add button-hover"></button>
       </section>
-      <section class="cards"></section>
+      <section class="cards" aria-label="Секция с карточками"></section>
     </main>
     
     <footer class="footer">
@@ -53,8 +53,8 @@
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_add-card button-hover"></button>
       <h2 class="popup__title">Новое место</h2>
       <form name="popup" class="popup__form popup__form_add-card">
-        <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_type_name">
-        <input type="text" name="about" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
+        <input type="text" name="name" required autocomplete="off" placeholder="Название" class="popup__input popup__input_type_name">
+        <input type="text" name="about" required autocomplete="off" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
         <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Создать</button>
       </form>
     </div>
@@ -64,7 +64,7 @@
     <div class="popup__container-figure">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_full-image button-hover"></button>
       <figure class="popup__figure">
-        <img class="popup__image" src="" alt="">
+        <img class="popup__image" src="#" alt="">
         <figcaption class="popup__image-caption"></figcaption>
       </figure>
     </div>
