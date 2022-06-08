@@ -9,7 +9,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 618px) {
   .profile__description {
     width: 282px;
   }
