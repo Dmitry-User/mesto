@@ -36,32 +36,44 @@
     </footer>
   </div>
 
-  <div class="popup popup_value_edit-profile">
-    <div class="popup__container-form">
+  <div class="popup popup_type_edit-profile popup_background_light">
+    <div class="popup__container popup__container_type_form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_edit-profile button-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="popup" class="popup__form popup__form_edit-profile">
-        <input type="text" name="name" class="popup__input popup__input_type_name">
-        <input type="text" name="about" class="popup__input popup__input_type_about">
-        <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Сохранить</button>
+      <form name="popup" class="popup__form form form_type_edit-profile">
+        <label class="form__field">
+          <input type="text" name="name-profile" class="form__input form__input_type_name">
+          <span class="form__input-error"></span>
+        </label>
+        <label class="form__field">
+          <input type="text" name="about-profile" class="form__input form__input_type_about">
+          <span class="form__input-error"></span>
+        </label>
+        <button type="submit" aria-label="Сохранить" value="" class="form__button-save">Сохранить</button>
       </form>
     </div>
   </div>
 
-  <div class="popup popup_value_add-card">
-    <div class="popup__container-form">
+  <div class="popup popup_type_add-card popup_background_light">
+    <div class="popup__container popup__container_type_form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_add-card button-hover"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="popup" class="popup__form popup__form_add-card">
-        <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_type_name">
-        <input type="url" name="about" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
-        <button type="submit" aria-label="Сохранить" value="" class="popup__button-save">Создать</button>
+      <form name="popup" class="popup__form form form_type_add-card">
+        <label class="form__field">
+          <input type="text" name="name-card" required placeholder="Название" class="form__input form__input_type_name">
+          <span class="form__input-error"></span>
+        </label>
+        <label class="form__field">
+          <input type="url" name="link-card" required placeholder="Ссылка на картинку" class="form__input form__input_type_link">
+          <span class="form__input-error"></span>
+        </label>
+        <button type="submit" aria-label="Сохранить" value="" class="form__button-save">Создать</button>
       </form>
     </div>
   </div>
 
-  <div class="popup popup_value_full-image popup_background-dark">
-    <div class="popup__container-figure">
+  <div class="popup popup_type_full-image popup_background_dark">
+    <div class="popup__container popup__container_figure">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_full-image button-hover"></button>
       <figure class="popup__figure">
         <img class="popup__image" src="#" alt="">

@@ -1,6 +1,7 @@
-.popup__input {
+.form__input {
+  width: 100%;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 0 0 10px 0;
   border: none;
   background: transparent;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
@@ -8,10 +9,6 @@
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 17px;
-}
-
-.popup__input:not(:last-of-type) {
-  margin-bottom: 20px;
 }
 
 /* для Chrome (убирает серый фон инпута) */

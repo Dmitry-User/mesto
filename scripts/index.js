@@ -1,23 +1,23 @@
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
-const formEditProfileElement = document.querySelector('.popup__form_edit-profile');
-const nameEditProfileInput = formEditProfileElement.querySelector('.popup__input_type_name');
-const aboutEditProfileInput = formEditProfileElement.querySelector('.popup__input_type_about');
+const formEditProfileElement = document.querySelector('.form_type_edit-profile');
+const nameEditProfileInput = formEditProfileElement.querySelector('.form__input_type_name');
+const aboutEditProfileInput = formEditProfileElement.querySelector('.form__input_type_about');
 
-const formAddCardElement = document.querySelector('.popup__form_add-card');
-const nameAddCardInput = formAddCardElement.querySelector('.popup__input_type_name');
-const linkAddCardInput = formAddCardElement.querySelector('.popup__input_type_link');
+const formAddCardElement = document.querySelector('.form_type_add-card');
+const nameAddCardInput = formAddCardElement.querySelector('.form__input_type_name');
+const linkAddCardInput = formAddCardElement.querySelector('.form__input_type_link');
 
-const popupEditProfile = document.querySelector('.popup_value_edit-profile');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
 const popupEditProfileClose = document.querySelector('.popup__button-close_type_edit-profile');
 
-const popupAddCard = document.querySelector('.popup_value_add-card');
+const popupAddCard = document.querySelector('.popup_type_add-card');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const popupAddCardClose = document.querySelector('.popup__button-close_type_add-card');
 
-const popupFullImage = document.querySelector('.popup_value_full-image');
+const popupFullImage = document.querySelector('.popup_type_full-image');
 const fullImageElement = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 const popupFullImageClose = popupFullImage.querySelector('.popup__button-close');

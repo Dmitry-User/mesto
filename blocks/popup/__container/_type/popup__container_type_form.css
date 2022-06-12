@@ -1,5 +1,4 @@
-.popup__container-form {
-  position: relative;
+.popup__container_type_form {
   min-width: 430px;
   padding: 36px;
   box-sizing: border-box;
@@ -10,7 +9,7 @@
 }
 
 @media (max-width: 618px) {
-  .popup__container-form {
+  .popup__container_type_form {
     min-width: 282px;
     margin: 0 19px;
     padding: 24px 22px;
