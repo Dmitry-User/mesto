@@ -1,5 +1,5 @@
 .popup__container_type_form {
-  min-width: 430px;
+  width: 430px;
   padding: 36px;
   box-sizing: border-box;
   display: flex;
@@ -8,9 +8,9 @@
   border-radius: 10px;
 }
 
-@media (max-width: 618px) {
+@media (max-width: 460px) {
   .popup__container_type_form {
-    min-width: 282px;
+    width: 282px;
     margin: 0 19px;
     padding: 24px 22px;
   }

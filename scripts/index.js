@@ -29,9 +29,9 @@ const openPopup = popupElement => popupElement.classList.add('popup_opened');
 
 const closePopup = popupElement => popupElement.classList.remove('popup_opened');
 
-const handleLikeButton = e => e.target.classList.toggle('card__button-like_active'); 
+const likeButtonHandler = e => e.target.classList.toggle('card__button-like_active'); 
 
-const handleDeleteButton = e => {
+const deleteButtonHandler = e => {
   const elementCard = e.target.closest('.card');
   elementCard.remove();
 };
@@ -52,8 +52,8 @@ function createCard(item) {
   cardImageElement.alt = item.name;
   cardImageElement.src = item.link;
   
-  cardElement.querySelector('.card__button-delete').addEventListener('click', handleDeleteButton);
-  cardElement.querySelector('.card__button-like').addEventListener('click', handleLikeButton);
+  cardElement.querySelector('.card__button-delete').addEventListener('click', deleteButtonHandler);
+  cardElement.querySelector('.card__button-like').addEventListener('click', likeButtonHandler);
   cardImageElement.addEventListener('click', handleFullImagePopup);
 
   return cardElement;

@@ -2,13 +2,17 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 0 10px 0;
-  border: none;
   background: transparent;
+  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 17px;
+}
+
+.form__input:focus {
+  border-bottom: 1px solid rgba(0, 109, 229, 1);
 }
 
 /* для Chrome (убирает серый фон инпута) */
