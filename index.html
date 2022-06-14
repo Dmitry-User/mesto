@@ -37,49 +37,47 @@
   </div>
 
   <div class="popup popup_type_edit-profile popup_background_light">
-    <div class="popup__content popup__content_type_form">
-      <button type="button" aria-label="Закрыть" name="edit-profile_close" class="popup__button-close button-hover"></button>
+    <div class="popup__container">
+      <button type="button" aria-label="Закрыть" name="edit-profile_close" class="popup__button popup__button_type_close button-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="edit-profile" class="form form_type_edit-profile">
-        <label class="form__field">
-          <input type="text" name="name-profile" placeholder="Имя" required minlength="2" maxlength="40" class="form__input form__input_type_name">
-          <span class="form__input-error"></span>
+      <form name="edit-profile" class="popup__form popup__form_type_edit-profile">
+        <label class="popup__field">
+          <input type="text" name="name-profile" placeholder="Имя" required minlength="2" maxlength="40" class="popup__input popup__input_type_name">
+          <span class="popup__error"></span>
         </label>
-        <label class="form__field">
-          <input type="text" name="about-profile" placeholder="О себе" required minlength="2" maxlength="200" class="form__input form__input_type_about">
-          <span class="form__input-error"></span>
+        <label class="popup__field">
+          <input type="text" name="about-profile" placeholder="О себе" required minlength="2" maxlength="200" class="popup__input popup__input_type_about">
+          <span class="popup__error"></span>
         </label>
-        <button type="submit" aria-label="Сохранить" value="" class="form__button-save">Сохранить</button>
+        <button type="submit" aria-label="Сохранить" value="" class="popup__button popup__button_type_save">Сохранить</button>
       </form>
     </div>
   </div>
 
   <div class="popup popup_type_add-card popup_background_light">
-    <div class="popup__content popup__content_type_form">
-      <button type="button" aria-label="Закрыть" name="add-card_close" class="popup__button-close button-hover"></button>
+    <div class="popup__container">
+      <button type="button" aria-label="Закрыть" name="add-card_close" class="popup__button popup__button_type_close button-hover"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="add-card" class="form form_type_add-card">
-        <label class="form__field">
-          <input type="text" name="name-card" required minlength="2" maxlength="30" placeholder="Название" class="form__input form__input_type_name">
-          <span class="form__input-error"></span>
+      <form name="add-card" class="popup__form popup__form_type_add-card">
+        <label class="popup__field">
+          <input type="text" name="name-card" required minlength="2" maxlength="30" placeholder="Название" class="popup__input popup__input_type_name">
+          <span class="popup__error"></span>
         </label>
-        <label class="form__field">
-          <input type="url" name="link-card" required placeholder="Ссылка на картинку" class="form__input form__input_type_link">
-          <span class="form__input-error"></span>
+        <label class="popup__field">
+          <input type="url" name="link-card" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
+          <span class="popup__error"></span>
         </label>
-        <button type="submit" aria-label="Сохранить" value="" class="form__button-save">Создать</button>
+        <button type="submit" aria-label="Сохранить" value="" class="popup__button popup__button_type_save">Создать</button>
       </form>
     </div>
   </div>
 
   <div class="popup popup_type_full-image popup_background_dark">
-    <div class="popup__content popup__content_type_figure">
-      <button type="button" aria-label="Закрыть" name="full-image_close" class="popup__button-close button-hover"></button>
-      <figure class="popup__figure">
-        <img class="popup__image" src="#" alt="">
-        <figcaption class="popup__image-caption"></figcaption>
-      </figure>
-    </div>
+    <figure class="popup__figure">
+      <img class="popup__image" src="#" alt="">
+      <figcaption class="popup__image-caption"></figcaption>
+      <button type="button" aria-label="Закрыть" name="full-image_close" class="popup__button_type_close button-hover"></button>
+    </figure>
   </div>
 
   <template class="card-template">

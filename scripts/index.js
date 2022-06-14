@@ -1,13 +1,13 @@
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
-const formEditProfileElement = document.querySelector('.form_type_edit-profile');
-const nameEditProfileInput = formEditProfileElement.querySelector('.form__input_type_name');
-const aboutEditProfileInput = formEditProfileElement.querySelector('.form__input_type_about');
+const formEditProfileElement = document.querySelector('.popup__form_type_edit-profile');
+const nameEditProfileInput = formEditProfileElement.querySelector('.popup__input_type_name');
+const aboutEditProfileInput = formEditProfileElement.querySelector('.popup__input_type_about');
 
-const formAddCardElement = document.querySelector('.form_type_add-card');
-const nameAddCardInput = formAddCardElement.querySelector('.form__input_type_name');
-const linkAddCardInput = formAddCardElement.querySelector('.form__input_type_link');
+const formAddCardElement = document.querySelector('.popup__form_type_add-card');
+const nameAddCardInput = formAddCardElement.querySelector('.popup__input_type_name');
+const linkAddCardInput = formAddCardElement.querySelector('.popup__input_type_link');
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
@@ -22,7 +22,7 @@ const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 const cardTemplate = document.querySelector('.card-template').content;
 const cardSection = document.querySelector('.cards');
 
-const popupCloseButtons = document.querySelectorAll('.popup__button-close');
+const popupCloseButtons = document.querySelectorAll('.popup__button_type_close');
 
 const closeCurrentPopup = popupCloseButtons.forEach((item) => {
   item.addEventListener('click', (e) => {
