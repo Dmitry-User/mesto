@@ -22,7 +22,9 @@ const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 const cardTemplate = document.querySelector('.card-template').content;
 const cardSection = document.querySelector('.cards');
 
-const popupCloseButtons = document.querySelectorAll('.popup__button_type_close');
+const popupCloseButtons = Array.from(document.querySelectorAll('.popup__button_type_close'));
+
+console.log(popupCloseButtons);
 
 const closeCurrentPopup = popupCloseButtons.forEach((item) => {
   item.addEventListener('click', (e) => {
