@@ -1,4 +1,4 @@
-.popup__container_type_form {
+.popup__content_type_form {
   width: 430px;
   padding: 36px;
   box-sizing: border-box;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 460px) {
-  .popup__container_type_form {
+  .popup__content_type_form {
     width: 282px;
     margin: 0 19px;
     padding: 24px 22px;

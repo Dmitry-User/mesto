@@ -37,16 +37,16 @@
   </div>
 
   <div class="popup popup_type_edit-profile popup_background_light">
-    <div class="popup__container popup__container_type_form">
+    <div class="popup__content popup__content_type_form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_edit-profile button-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="edit-profile" class="popup__form form form_type_edit-profile">
+      <form name="edit-profile" class="form form_type_edit-profile">
         <label class="form__field">
-          <input type="text" name="name-profile" class="form__input form__input_type_name">
+          <input type="text" name="name-profile" placeholder="Имя" required minlength="2" maxlength="40" class="form__input form__input_type_name">
           <span class="form__input-error"></span>
         </label>
         <label class="form__field">
-          <input type="text" name="about-profile" class="form__input form__input_type_about">
+          <input type="text" name="about-profile" placeholder="О себе" required minlength="2" maxlength="200" class="form__input form__input_type_about">
           <span class="form__input-error"></span>
         </label>
         <button type="submit" aria-label="Сохранить" value="" class="form__button-save">Сохранить</button>
@@ -55,12 +55,12 @@
   </div>
 
   <div class="popup popup_type_add-card popup_background_light">
-    <div class="popup__container popup__container_type_form">
+    <div class="popup__content popup__content_type_form">
       <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_add-card button-hover"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="add-card" class="popup__form form form_type_add-card">
+      <form name="add-card" class="form form_type_add-card">
         <label class="form__field">
-          <input type="text" name="name-card" required placeholder="Название" class="form__input form__input_type_name">
+          <input type="text" name="name-card" required minlength="2" maxlength="30" placeholder="Название" class="form__input form__input_type_name">
           <span class="form__input-error"></span>
         </label>
         <label class="form__field">
@@ -73,8 +73,8 @@
   </div>
 
   <div class="popup popup_type_full-image popup_background_dark">
-    <div class="popup__container popup__container_figure">
-      <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_full-image button-hover"></button>
+    <div class="popup__content popup__content_type_figure">
+      <button type="button" aria-label="Закрыть" class="popup__button-close button-hover"></button>
       <figure class="popup__figure">
         <img class="popup__image" src="#" alt="">
         <figcaption class="popup__image-caption"></figcaption>
