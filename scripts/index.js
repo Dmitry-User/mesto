@@ -11,23 +11,33 @@ const linkAddCardInput = formAddCardElement.querySelector('.form__input_type_lin
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-const popupEditProfileClose = document.querySelector('.popup__button-close_type_edit-profile');
 
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const buttonAddCard = document.querySelector('.profile__button-add');
-const popupAddCardClose = document.querySelector('.popup__button-close_type_add-card');
 
 const popupFullImage = document.querySelector('.popup_type_full-image');
 const fullImageElement = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
-const popupFullImageClose = popupFullImage.querySelector('.popup__button-close');
 
 const cardTemplate = document.querySelector('.card-template').content;
 const cardSection = document.querySelector('.cards');
 
-const openPopup = popupElement => popupElement.classList.add('popup_opened');
+const popupCloseButtons = document.querySelectorAll('.popup__button-close');
+
+const closeCurrentPopup = popupCloseButtons.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    if (e.target.name === 'add-card_close') {
+      formAddCardElement.reset();
+    }
+    const currentPopup = document.querySelector(`.popup_type_${e.target.name.replace('_close', '')}`);
+    closePopup(currentPopup);
+  });
+});
 
 const closePopup = popupElement => popupElement.classList.remove('popup_opened');
+
+const openPopup = popupElement => popupElement.classList.add('popup_opened');
+
 
 const likeButtonHandler = e => e.target.classList.toggle('card__button-like_active'); 
 
@@ -93,17 +103,9 @@ formAddCardElement.addEventListener('submit', function(e) {
 
 buttonAddCard.addEventListener('click', e => openPopup(popupAddCard));
 
-popupAddCardClose.addEventListener('click', e => {
-  formAddCardElement.reset();
-  closePopup(popupAddCard)
-});
-
 buttonEditProfile.addEventListener('click', e => {
   openPopup(popupEditProfile);
   nameEditProfileInput.value = profileName.textContent;
   aboutEditProfileInput.value = profileAbout.textContent;
 });
 
-popupEditProfileClose.addEventListener('click', e => closePopup(popupEditProfile));
-
-popupFullImageClose.addEventListener('click', e => closePopup(popupFullImage));
