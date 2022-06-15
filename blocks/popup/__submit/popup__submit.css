@@ -17,6 +17,15 @@
   opacity: .8;
 }
 
+.popup__submit:disabled {
+  border: 1px solid #000000;
+  background-color: transparent;
+  color: #000;
+  opacity: 0.2;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (max-width: 618px) {
   .popup__submit {
     margin: 13px 0 0 0;

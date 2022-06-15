@@ -11,9 +11,9 @@
   line-height: 17px;
 }
 
-.popup__input:focus {
+/* .popup__input:focus {
   border-bottom-color: #006de5;
-}
+} */
 
 /* для Chrome (убирает серый фон инпута) */
 input:-webkit-autofill {

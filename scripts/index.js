@@ -49,6 +49,11 @@ const openPopup = popupElement => {
   document.addEventListener('keydown', closePopupEscHandler);
 };
 
+const disableButtonSubmit = e => {
+  const currentSubmitButton = e.target.querySelector('.popup__submit');
+  currentSubmitButton.setAttribute('disabled', '');
+};
+
 const likeButtonHandler = e => {
   const likeElement = e.target;
   if (likeElement.classList.contains('card__like_active')) {
@@ -92,17 +97,19 @@ function convertNameAddCardInput(text) {
   nameAddCardInput.value = newText;
 }
 
-const addCard = (item) => cardSection.prepend(createCard(item));
+const addCard = item => {
+  cardSection.prepend(createCard(item));
+};
 
 initialCards.forEach(addCard);
-
 
 formEditProfileElement.addEventListener('submit', function(e) {
   e.preventDefault();
   profileName.textContent = nameEditProfileInput.value;
   profileAbout.textContent = aboutEditProfileInput.value;
   closePopup(popupEditProfile);
-});
+  disableButtonSubmit(e);
+  });
 
 formAddCardElement.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -115,6 +122,7 @@ formAddCardElement.addEventListener('submit', function(e) {
 
   addCard(newDataCard);
   closePopup(popupAddCard);
+  disableButtonSubmit(e);
   formAddCardElement.reset();
 });
 
@@ -130,4 +138,3 @@ closeButtons.forEach(buttonElement => {
   const currentCloseBotton = buttonElement.closest('.popup');
   buttonElement.addEventListener('click', () => closePopup(currentCloseBotton));
 });
-
