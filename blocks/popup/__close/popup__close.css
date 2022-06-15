@@ -1,4 +1,4 @@
-.popup__button_type_close {
+.popup__close {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 618px) {
-  .popup__button_type_close {
+  .popup__close {
     top: -36px;
     right: 0;
     width: 20px;

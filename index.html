@@ -22,11 +22,11 @@
         <div class="profile__description">
           <div class="profile__top">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="button" aria-label="Редактировать" class="profile__button-edit button-hover"></button>
+            <button type="button" aria-label="Редактировать" class="profile__edit element-hover"></button>
           </div>
           <p class="profile__about">Исследователь океана</p>
         </div>
-        <button type="button" aria-label="Добавить" class="profile__button-add button-hover"></button>
+        <button type="button" aria-label="Добавить" class="profile__add-card element-hover"></button>
       </section>
       <section class="cards" aria-label="Секция с карточками"></section>
     </main>
@@ -38,36 +38,36 @@
 
   <div class="popup popup_type_edit-profile popup_background_light">
     <div class="popup__container">
-      <button type="button" aria-label="Закрыть" name="edit-profile_close" class="popup__button popup__button_type_close button-hover"></button>
+      <button type="button" aria-label="Закрыть" class="popup__close element-hover"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="edit-profile" class="popup__form popup__form_type_edit-profile">
-        <label class="popup__field">
-          <input type="text" name="name-profile" placeholder="Имя" required minlength="2" maxlength="40" class="popup__input popup__input_type_name">
-          <span class="popup__error"></span>
+      <form novalidate name="edit-profile" class="popup__form popup__form_type_edit-profile">
+        <label class="popup__label">
+          <input required type="text" name="name-profile" placeholder="Имя" minlength="2" maxlength="40" class="popup__input popup__input_type_name">
+          <span class="popup__error name-profile-error"></span>
         </label>
-        <label class="popup__field">
-          <input type="text" name="about-profile" placeholder="О себе" required minlength="2" maxlength="200" class="popup__input popup__input_type_about">
-          <span class="popup__error"></span>
+        <label class="popup__label">
+          <input required type="text" name="about-profile" placeholder="О себе" minlength="2" maxlength="200" class="popup__input popup__input_type_about">
+          <span class="popup__error about-profile-error"></span>
         </label>
-        <button type="submit" aria-label="Сохранить" value="" class="popup__button popup__button_type_save">Сохранить</button>
+        <button type="submit" aria-label="Сохранить" value="" class="popup__submit">Сохранить</button>
       </form>
     </div>
   </div>
 
   <div class="popup popup_type_add-card popup_background_light">
     <div class="popup__container">
-      <button type="button" aria-label="Закрыть" name="add-card_close" class="popup__button popup__button_type_close button-hover"></button>
+      <button type="button" aria-label="Закрыть" class="popup__close element-hover"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="add-card" class="popup__form popup__form_type_add-card">
-        <label class="popup__field">
-          <input type="text" name="name-card" required minlength="2" maxlength="30" placeholder="Название" class="popup__input popup__input_type_name">
-          <span class="popup__error"></span>
+      <form novalidate name="add-card" class="popup__form popup__form_type_add-card">
+        <label class="popup__label">
+          <input required type="text" name="name-card" minlength="2" maxlength="30" placeholder="Название" class="popup__input popup__input_type_name">
+          <span class="popup__error name-card-error"></span>
         </label>
-        <label class="popup__field">
-          <input type="url" name="link-card" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
-          <span class="popup__error"></span>
+        <label class="popup__label">
+          <input required type="url" name="link-card" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
+          <span class="popup__error link-card-error"></span>
         </label>
-        <button type="submit" aria-label="Сохранить" value="" class="popup__button popup__button_type_save">Создать</button>
+        <button type="submit" aria-label="Сохранить" value="" class="popup__submit">Создать</button>
       </form>
     </div>
   </div>
@@ -76,23 +76,25 @@
     <figure class="popup__figure">
       <img class="popup__image" src="#" alt="">
       <figcaption class="popup__image-caption"></figcaption>
-      <button type="button" aria-label="Закрыть" name="full-image_close" class="popup__button_type_close button-hover"></button>
+      <button type="button" aria-label="Закрыть" class="popup__close element-hover"></button>
     </figure>
   </div>
 
   <template class="card-template">
     <article class="card">
-      <button type="button" aria-label="Удалить карточку" class="card__button-delete"></button>
+      <button type="button" aria-label="Удалить карточку" class="card__delete"></button>
       <img src="#" alt="" class="card__image">
       <div class="card__description">
         <h2 class="card__title"></h2>
-        <button type="button" aria-label="Поставить лайк" class="card__button-like"></button>
+        <button type="button" aria-label="Поставить лайк" class="card__like"></button>
       </div>
     </article>
   </template>
 
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
+
 </body>
 
 </html>

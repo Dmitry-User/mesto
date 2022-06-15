@@ -2,7 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 0 10px 0;
-  background: transparent;
+  background: transparent; /* для Chrome (убирает серый фон инпута) */
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
@@ -12,7 +12,7 @@
 }
 
 .popup__input:focus {
-  border-bottom: 1px solid rgba(0, 109, 229, 1);
+  border-bottom-color: #006de5;
 }
 
 /* для Chrome (убирает серый фон инпута) */
