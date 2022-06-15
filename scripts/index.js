@@ -32,7 +32,6 @@ const closePopup = popupElement => popupElement.classList.remove('popup_opened')
 
 const openPopup = popupElement => popupElement.classList.add('popup_opened');
 
-
 const likeButtonHandler = e => e.target.classList.toggle('card__like_active');
 
 const deleteButtonHandler = e => {
