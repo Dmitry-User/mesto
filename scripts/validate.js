@@ -41,13 +41,15 @@ const enableValidation = elementsForFormValidate => {
 const hasInvalidInput = inputList => {
   return inputList.some(inputElement => {
     return !inputElement.validity.valid;
-  }); 
+  });
 };
 
 const toggleButtonState = (inputList, buttonElement, elementsForFormValidate) => {
   if (hasInvalidInput(inputList)) {
+    buttonElement.setAttribute('disabled', '');
     buttonElement.classList.add(elementsForFormValidate.inactiveButtonClass);
   } else {
+    buttonElement.removeAttribute('disabled')
     buttonElement.classList.remove(elementsForFormValidate.inactiveButtonClass);
   }
 };

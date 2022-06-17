@@ -20,42 +20,46 @@ const fullImageElement = popupFullImage.querySelector('.popup__image');
 const fullImageCaption = popupFullImage.querySelector('.popup__image-caption');
 
 const cardTemplate = document.querySelector('.card-template').content;
+const popups = document.querySelectorAll('.popup');
 const cardSection = document.querySelector('.cards');
 
-const closeButtons = Array.from(document.querySelectorAll('.popup__close'));
+const openPopup = popupElement => {
+  popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscHandler);
+};
 
 const closePopup = popupElement => {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEscHandler);
 };
 
-const closePopupEscHandler = e => {
-  const currentPopupElement = document.querySelector('.popup_opened');
-  if (e.key === 'Escape') {
+const closePopupEscHandler = evt => {
+  if (evt.key === 'Escape') {
+    const currentPopupElement = document.querySelector('.popup_opened');
     closePopup(currentPopupElement);
   }
 };
 
-const closePopupOverlayHandler = e => {
-  const currentElement = e.target;
-    if (currentElement.classList.contains('popup')) {
-    closePopup(currentElement);
-  }
-};
+// Спасибо большое за подсказку и ревью!
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
+});
 
-const openPopup = popupElement => {
-  popupElement.classList.add('popup_opened');
-  popupElement.addEventListener('mousedown', closePopupOverlayHandler);
-  document.addEventListener('keydown', closePopupEscHandler);
-};
-
-const disableButtonSubmit = e => {
-  const currentSubmitButton = e.target.querySelector('.popup__submit');
+const disableButtonSubmit = evt => {
+  const currentSubmitButton = evt.target.querySelector('.popup__submit');
+  currentSubmitButton.classList.add('popup__submit_disable');
   currentSubmitButton.setAttribute('disabled', '');
 };
 
-const likeButtonHandler = e => {
-  const likeElement = e.target;
+const likeButtonHandler = evt => {
+  const likeElement = evt.target;
   if (likeElement.classList.contains('card__like_active')) {
     likeElement.classList.remove('card__like_active');
   } else {
@@ -63,15 +67,15 @@ const likeButtonHandler = e => {
   }
 };
 
-const deleteButtonHandler = e => {
-  const elementCard = e.target.closest('.card');
+const deleteButtonHandler = evt => {
+  const elementCard = evt.target.closest('.card');
   elementCard.remove();
 };
 
-const handleFullImagePopup = e => {
-  fullImageElement.src = e.target.src;
-  fullImageElement.alt = e.target.alt;
-  fullImageCaption.textContent = e.target.alt;
+const handleFullImagePopup = evt => {
+  fullImageElement.src = evt.target.src;
+  fullImageElement.alt = evt.target.alt;
+  fullImageCaption.textContent = evt.target.alt;
   openPopup(popupFullImage);
 };
 
@@ -103,16 +107,16 @@ const addCard = item => {
 
 initialCards.forEach(addCard);
 
-formEditProfileElement.addEventListener('submit', function(e) {
-  e.preventDefault();
+formEditProfileElement.addEventListener('submit', function(evt) {
+  evt.preventDefault();
   profileName.textContent = nameEditProfileInput.value;
   profileAbout.textContent = aboutEditProfileInput.value;
+  disableButtonSubmit(evt);
   closePopup(popupEditProfile);
-  disableButtonSubmit(e);
   });
 
-formAddCardElement.addEventListener('submit', function(e) {
-  e.preventDefault();
+formAddCardElement.addEventListener('submit', function(evt) {
+  evt.preventDefault();
   convertNameAddCardInput();
   
   const newDataCard = {
@@ -121,9 +125,9 @@ formAddCardElement.addEventListener('submit', function(e) {
   };
 
   addCard(newDataCard);
-  closePopup(popupAddCard);
-  disableButtonSubmit(e);
   formAddCardElement.reset();
+  disableButtonSubmit(evt);
+  closePopup(popupAddCard);
 });
 
 buttonAddCard.addEventListener('click', () => openPopup(popupAddCard));
@@ -132,9 +136,4 @@ buttonEditProfile.addEventListener('click', () => {
   nameEditProfileInput.value = profileName.textContent;
   aboutEditProfileInput.value = profileAbout.textContent;
   openPopup(popupEditProfile);
-});
-
-closeButtons.forEach(buttonElement => {
-  const currentCloseBotton = buttonElement.closest('.popup');
-  buttonElement.addEventListener('click', () => closePopup(currentCloseBotton));
 });
