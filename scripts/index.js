@@ -74,7 +74,7 @@ const deleteButtonHandler = evt => {
 
 const handleFullImagePopup = evt => {
   fullImageElement.src = evt.target.src;
-  fullImageElement.alt = evt.target.alt;
+  fullImageElement.alt = `Фото ${evt.target.alt}.`;
   fullImageCaption.textContent = evt.target.alt;
   openPopup(popupFullImage);
 };
