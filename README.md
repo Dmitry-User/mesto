@@ -13,6 +13,7 @@
 * Nested BEM
 * Flexbox
 * Grid Layout
+* UX Lean Validation
 * Javascript
 
 [Ссылка на проект **Место**](https://dmitry-user.github.io/mesto/)
