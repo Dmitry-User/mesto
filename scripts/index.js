@@ -40,7 +40,6 @@ const closePopupEscHandler = evt => {
   }
 };
 
-// Спасибо большое за подсказку и ревью!
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
@@ -74,8 +73,8 @@ const deleteButtonHandler = evt => {
 
 const handleFullImagePopup = evt => {
   fullImageElement.src = evt.target.src;
-  fullImageElement.alt = `Фото ${evt.target.alt}.`;
-  fullImageCaption.textContent = evt.target.alt;
+  fullImageElement.alt = evt.target.alt;
+  fullImageCaption.textContent = evt.target.alt.slice(5);
   openPopup(popupFullImage);
 };
 
@@ -85,7 +84,7 @@ function createCard(item) {
   const cardTitleElement = cardElement.querySelector('.card__title');
 
   cardTitleElement.textContent = item.name;
-  cardImageElement.alt = item.name;
+  cardImageElement.alt = `Фото ${item.name}.`;
   cardImageElement.src = item.link;
   
   cardElement.querySelector('.card__delete').addEventListener('click', deleteButtonHandler);
