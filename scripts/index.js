@@ -104,6 +104,8 @@ const addCard = item => {
   cardSection.prepend(createCard(item));
 };
 
+import { initialCards } from './data.js';
+
 initialCards.forEach(addCard);
 
 formEditProfileElement.addEventListener('submit', function(evt) {
