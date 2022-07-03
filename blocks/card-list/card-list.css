@@ -1,4 +1,4 @@
-.cards {
+.card-list {
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, .5fr));
@@ -7,20 +7,20 @@
 }
 
 @media (max-width: 928px) {
-  .cards {
+  .card-list {
     padding: 0 27px;
   }
 }
 
 @media (max-width: 768px) {
-  .cards {
+  .card-list {
     padding: 0 19px;
     justify-content: center;
   }
 }
 
 @media (max-width: 618px) {
-  .cards {
+  .card-list {
     grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   }
 }
