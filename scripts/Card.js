@@ -1,6 +1,6 @@
-export class Card {
+export default class Card {
 
-  constructor(dataCard, cardSelector, openCardPopup) {
+  constructor (dataCard, cardSelector, openCardPopup) {
     this._name = dataCard.name;
     this._link = dataCard.link;
     this._cardSelector = cardSelector;
@@ -17,14 +17,14 @@ export class Card {
     return cardElement;
   }
 
-  _handleLikeButton () {
+  _handleLikeButton() {
     const likeElement = this._element.querySelector('.card__like');
     likeElement.classList.contains('card__like_active')
       ? likeElement.classList.remove('card__like_active')
       : likeElement.classList.add('card__like_active');
   }
   
-  _handleDeleteButton () {
+  _handleDeleteButton() {
     this._element.remove();
   }
 
@@ -40,9 +40,9 @@ export class Card {
     });
   }
 
-  generateCard() {
-    this._element = this._getTemplate ();
-    this._setEventListeners ();
+  generateCard () {
+    this._element = this._getTemplate();
+    this._setEventListeners();
 
     this._element.querySelector('.card__title').textContent = this._name;
     const imageElement = this._element.querySelector('.card__image');

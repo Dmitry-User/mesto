@@ -1,5 +1,40 @@
-import { initialCards } from './data.js';
-import { Card } from './Card.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const settingsValidation = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disable',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error_visible'
+};
 
 const nameProfile = document.querySelector('.profile__name');
 const aboutProfile = document.querySelector('.profile__about');
@@ -15,7 +50,7 @@ const linkCardInput = formAddCard.querySelector('.popup__input_type_link');
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__edit');
 
-const popupAddCard = document.querySelector('.popup_type_add-card');
+const addCardPopup = document.querySelector('.popup_type_add-card');
 const buttonAddCard = document.querySelector('.profile__add-card');
 
 const popups = document.querySelectorAll('.popup');
@@ -24,11 +59,6 @@ const cardList = document.querySelector('.card-list');
 const cardPopup = document.querySelector('.popup_type_full-image');
 const imageCardPopup = cardPopup.querySelector('.popup__image');
 const captionCardPopup = cardPopup.querySelector('.popup__image-caption');
-
-const openPopup = popupElement => {
-  popupElement.classList.add('popup_is-open');
-  document.addEventListener('keydown', handleEscClosePopup );
-};
 
 const closePopup = popupElement => {
   popupElement.classList.remove('popup_is-open');
@@ -53,10 +83,9 @@ popups.forEach((popup) => {
   });
 });
 
-const disableButtonSubmit = evt => {
-  const currentSubmitButton = evt.target.querySelector('.popup__submit');
-  currentSubmitButton.classList.add('popup__submit_disable');
-  currentSubmitButton.setAttribute('disabled', '');
+const openPopup = popupElement => {
+  popupElement.classList.add('popup_is-open');
+  document.addEventListener('keydown', handleEscClosePopup );
 };
 
 const openCardPopup = (name, link) => {
@@ -76,33 +105,36 @@ const addCard = (item) => cardList.prepend(createCard(item));
 
 initialCards.forEach(item => addCard(item));
 
-
-formEditProfile .addEventListener('submit', function(evt) {
-  evt.preventDefault();
+formEditProfile .addEventListener('submit', () => {
   nameProfile.textContent = nameEditInput.value;
   aboutProfile.textContent = aboutEditInput.value;
-  disableButtonSubmit(evt);
   closePopup(editProfilePopup);
   });
 
-formAddCard.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  
+formAddCard.addEventListener('submit', () => {
   const newDataCard = {
     name: nameCardInput.value,
     link: linkCardInput.value
   };
-
   addCard(newDataCard);
-  formAddCard.reset();
-  disableButtonSubmit(evt);
-  closePopup(popupAddCard);
+  closePopup(addCardPopup);
 });
 
-buttonAddCard.addEventListener('click', () => openPopup(popupAddCard));
+buttonAddCard.addEventListener('click', () => {
+  formAddCard.reset();
+  validateFormAddCard.resetValidation();
+  openPopup(addCardPopup);
+});
 
 buttonEditProfile.addEventListener('click', () => {
   nameEditInput.value = nameProfile.textContent;
   aboutEditInput.value = aboutProfile.textContent;
+  validateFormEditProfile.resetValidation();
   openPopup(editProfilePopup);
 });
+
+const validateFormEditProfile = new FormValidator(settingsValidation, formEditProfile);
+validateFormEditProfile.enableValidation();
+
+const validateFormAddCard = new FormValidator(settingsValidation, formAddCard);
+validateFormAddCard.enableValidation();
