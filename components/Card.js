@@ -1,7 +1,7 @@
 export default class Card {
 
-  constructor (dataCard, cardSelector, openCardPopup) {
-    this._cardElement = dataCard;
+  constructor (cardData, cardSelector, openCardPopup) {
+    this._cardElement = cardData;
     this._cardSelector = cardSelector;
     this._openCardPopup = openCardPopup;
   }
