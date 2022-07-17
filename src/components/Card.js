@@ -25,19 +25,19 @@ export default class Card {
     this._element = null;
   }
 
-  _setEventListeners () {
+  _setEventListeners() {
     this._buttonLike.addEventListener('click', () => {
       this._handleLikeButton();
     });
     this._buttonDelete.addEventListener('click', () => {
       this._handleDeleteButton();
     });
-    this._imageElement.addEventListener('click', () => {
-      this._openCardPopup(this._cardElement);
-    });
+    // this._imageElement.addEventListener('click', () => {
+    //   this._openCardPopup(this._cardElement);
+    // });
   }
 
-  generateCard () {
+  generateCard() {
     this._element = this._getTemplate();
     this._buttonLike = this._element.querySelector('.card__like');
     this._buttonDelete = this._element.querySelector('.card__delete')

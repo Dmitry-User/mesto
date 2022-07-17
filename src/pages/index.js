@@ -1,6 +1,8 @@
-import { initialCards, settingsValidation } from '../utils/constants.js';
+import { cardsData, settingsValidation } from '../utils/constants.js';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
+import Popup from '../components/Card.js';
+import Section from '../components/Section.js';
 
 const nameProfile = document.querySelector('.profile__name');
 const aboutProfile = document.querySelector('.profile__about');
@@ -20,7 +22,8 @@ const popupAddCard = document.querySelector('.popup_type_add-card');
 const buttonAddCard = document.querySelector('.profile__add-card');
 
 const popups = document.querySelectorAll('.popup');
-const cardList = document.querySelector('.card-list');
+// const cardList = document.querySelector('.card-list');
+const cardsListSelector = '.card-list';
 
 const cardPopup = document.querySelector('.popup_type_full-image');
 const imageCardPopup = cardPopup.querySelector('.popup__image');
@@ -37,6 +40,10 @@ const handleEscClosePopup = evt => {
     closePopup(currentPopupElement);
   }
 };
+
+
+
+
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -61,15 +68,20 @@ const openCardPopup = cardElement => {
   openPopup(cardPopup);
 };
 
-const createCard = item => {
-  const card = new Card(item, '.card-template', openCardPopup);
-  const cardElement = card.generateCard();
-  return cardElement;
-};
+const cardsList = new Section({
+    items: cardsData,
+    renderer: (item) => {
+      const card = new Card(item, '.card-template', openCardPopup);
+      const cardElement = card.generateCard();
 
-const addCard = item => cardList.prepend(createCard(item));
+      cardsList.addItem(cardElement);
+    }
+  },
+  cardsListSelector
+);
 
-initialCards.forEach(item => addCard(item));
+cardsList.renderItems();
+
 
 formEditProfile .addEventListener('submit', () => {
   nameProfile.textContent = nameEditInput.value;
@@ -101,6 +113,7 @@ buttonEditProfile.addEventListener('click', () => {
 
 const validateFormEditProfile = new FormValidator(settingsValidation, formEditProfile);
 validateFormEditProfile.enableValidation();
+
 
 const validateFormAddCard = new FormValidator(settingsValidation, formAddCard);
 validateFormAddCard.enableValidation();
