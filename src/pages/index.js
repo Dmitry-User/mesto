@@ -24,6 +24,7 @@ const buttonAddCard = document.querySelector('.profile__add-card');
 const popups = document.querySelectorAll('.popup');
 // const cardList = document.querySelector('.card-list');
 const cardsListSelector = '.card-list';
+const cardSelector = '.card-template';
 
 const cardPopup = document.querySelector('.popup_type_full-image');
 const imageCardPopup = cardPopup.querySelector('.popup__image');
@@ -61,7 +62,7 @@ const openPopup = popupElement => {
   document.addEventListener('keydown', handleEscClosePopup );
 };
 
-const openCardPopup = cardElement => {
+const handleCardClick = cardElement => {
   imageCardPopup.src = cardElement.link;
   imageCardPopup.alt = `Фото ${cardElement.name}.`;
   captionCardPopup.textContent = cardElement.name;
@@ -71,7 +72,7 @@ const openCardPopup = cardElement => {
 const cardsList = new Section({
     items: cardsData,
     renderer: (item) => {
-      const card = new Card(item, '.card-template', openCardPopup);
+      const card = new Card(item, cardSelector, handleCardClick);
       const cardElement = card.generateCard();
 
       cardsList.addItem(cardElement);
