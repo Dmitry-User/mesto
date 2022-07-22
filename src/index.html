@@ -5,22 +5,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./images/favicon.svg">
-  <link rel="mask-icon" href="./images/mask-icon.svg" color="#000000"> <!-- from Safari -->
+  <link rel="icon" href="<%=require('./images/favicon.svg')%>">
+  <link rel="mask-icon" href="<%=require('./images/mask-icon.svg')%>" color="#000000"> <!-- from Safari -->
   <title>Место Россия</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="root">
 
   <div class="wrapper">
     <header class="header">
-      <img src="./images/logo.svg" alt="Логотип" class="header__logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo">
     </header>
 
     <main class="content">
       <section class="profile" aria-label="Секция профиль">
-        <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
         <div class="profile__description">
           <div class="profile__top">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -118,13 +117,6 @@
       </div>
     </article>
   </template>
-
-
-  <script type="module" src="./components/Section.js"></script>
-  <script type="module" src="./components/PopupWithImage.js"></script>
-  <script type="module" src="./components/Card.js"></script>
-  <script type="module" src="./components/FormValidator.js"></script>
-  <script type="module" src="./pages/index.js"></script>
 
 </body>
 

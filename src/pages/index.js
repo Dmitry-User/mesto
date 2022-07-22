@@ -1,3 +1,4 @@
+import './index.css';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -32,20 +33,27 @@ selectors.cardsList
 function createCard(item) {
   const card = new Card(item, selectors.card, handleCardClick);
   return card.generateCard();
-};
+}
 
 function handleCardClick(cardElement) {
   imagePopup.open(cardElement);
-};
+}
 
 function handleSubmitCard(cardData) {
   const cardElement = createCard(cardData);
   cardsList.addItem(cardElement);
-};
+}
 
 function handleSubmitUser(userData) {
   userInfo.setUserInfo(userData);
-};
+}
+
+cardsList.renderItems();
+imagePopup.setEventListener();
+cardPopup.setEventListeners();
+userPopup.setEventListeners();
+validateFormAddCard.enableValidation();
+validateFormEditUser.enableValidation();
 
 buttonAddCard.addEventListener('click', () => {
   validateFormAddCard.resetValidation();
@@ -58,10 +66,3 @@ buttonEditUser.addEventListener('click', () => {
   userPopup.setInputValues(user);
   userPopup.open();
 });
-
-cardsList.renderItems();
-imagePopup.setEventListener();
-cardPopup.setEventListeners();
-userPopup.setEventListeners();
-validateFormAddCard.enableValidation();
-validateFormEditUser.enableValidation();
