@@ -48,13 +48,6 @@ function handleSubmitUser(userData) {
   userInfo.setUserInfo(userData);
 }
 
-cardsList.renderItems();
-imagePopup.setEventListener();
-cardPopup.setEventListeners();
-userPopup.setEventListeners();
-validateFormAddCard.enableValidation();
-validateFormEditUser.enableValidation();
-
 buttonAddCard.addEventListener('click', () => {
   validateFormAddCard.resetValidation();
   cardPopup.open();
@@ -66,3 +59,10 @@ buttonEditUser.addEventListener('click', () => {
   userPopup.setInputValues(user);
   userPopup.open();
 });
+
+cardsList.renderItems();
+imagePopup.setEventListener();
+cardPopup.setEventListeners();
+userPopup.setEventListeners();
+validateFormAddCard.enableValidation();
+validateFormEditUser.enableValidation();
