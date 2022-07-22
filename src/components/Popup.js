@@ -1,4 +1,5 @@
 export default class Popup {
+
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
   }
@@ -26,9 +27,10 @@ export default class Popup {
   setEventListener() {
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_is-open')
-        ||evt.target.classList.contains('popup__close')) {
-        this.close();
-      }
+        ||evt.target.classList.contains('popup__close'))
+        {
+          this.close();
+        }
     });
   }
 }

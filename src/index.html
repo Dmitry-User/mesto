@@ -47,23 +47,23 @@
           <input
             required
             type="text"
-            id="name-profile"
+            name="name"
             placeholder="Имя"
             minlength="2"
             maxlength="40"
             class="popup__input popup__input_type_name">
-          <span class="popup__error name-profile-error"></span>
+          <span class="popup__error name-error"></span>
         </label>
         <label class="popup__label">
           <input
             required
             type="text"
-            id="about-profile"
+            name="about"
             placeholder="О себе"
             minlength="2"
             maxlength="200"
             class="popup__input popup__input_type_about">
-          <span class="popup__error about-profile-error"></span>
+          <span class="popup__error about-error"></span>
         </label>
         <button type="submit" aria-label="Сохранить" value="" class="popup__submit">Сохранить</button>
       </form>
@@ -79,21 +79,21 @@
           <input
             required
             type="text"
-            id="name-card"
+            name="name"
             minlength="2"
             maxlength="30"
             placeholder="Название"
             class="popup__input popup__input_type_name">
-          <span class="popup__error name-card-error"></span>
+          <span class="popup__error name-error"></span>
         </label>
         <label class="popup__label">
           <input
             required
             type="url"
-            id="link-card"
+            name="link"
             placeholder="Ссылка на фото"
             class="popup__input popup__input_type_link">
-          <span class="popup__error link-card-error"></span>
+          <span class="popup__error link-error"></span>
         </label>
         <button type="submit" aria-label="Сохранить" value="" class="popup__submit">Создать</button>
       </form>
@@ -119,7 +119,7 @@
     </article>
   </template>
 
-  <script type="module" src="./utils/constants.js"></script>
+
   <script type="module" src="./components/Section.js"></script>
   <script type="module" src="./components/PopupWithImage.js"></script>
   <script type="module" src="./components/Card.js"></script>

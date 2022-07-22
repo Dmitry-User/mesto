@@ -42,14 +42,12 @@ export default class Card {
     this._buttonLike = this._element.querySelector('.card__like');
     this._buttonDelete = this._element.querySelector('.card__delete')
     this._imageElement = this._element.querySelector('.card__image');
-    
+
     this._imageElement.src = this._cardElement.link;
     this._element.querySelector('.card__title').textContent = this._cardElement.name;
     this._imageElement.alt = `Фото ${this._cardElement.name}.`;
 
     this._setEventListeners();
-
     return this._element;
   }
-
 }

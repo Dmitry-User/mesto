@@ -4,6 +4,7 @@
   margin: 8px 0 0 19px;
   padding: 0;
   border: 1px solid #fff;
+  outline: none;
   box-sizing: border-box;
   background-image: url(../../../images/edit-icon.svg);
   background-size: 10px;
