@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "Интерактивная страница с возможностью:\r  * редактировать профиль\r  * добовлять, удалять фотографии\r  * ставить лайки",
+  "description": "Интерактивная страница",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
