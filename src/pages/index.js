@@ -22,12 +22,12 @@ const userInfo = new UserInfo(selectors);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 const cardsList = new Section({
   items: cardsData,
-  renderer: item => {
-    const cardElement = createCard(item);
-    cardsList.addItem(cardElement);
-  }
-},
-selectors.cardsList
+    renderer: item => {
+      const cardElement = createCard(item);
+      cardsList.addItem(cardElement);
+    }
+  },
+  selectors.cardsList
 );
 
 function createCard(item) {
