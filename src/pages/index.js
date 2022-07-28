@@ -1,4 +1,5 @@
 import './index.css';
+import Api from '../components/Api';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -11,8 +12,11 @@ import {
   formAddCard,
   buttonAddCard,
   formEditUser,
-  buttonEditUser
+  buttonEditUser,
+
 } from '../utils/constants.js';
+
+
 
 const validateFormAddCard = new FormValidator(selectors, formAddCard);
 const validateFormEditUser = new FormValidator(selectors, formEditUser);
@@ -29,6 +33,24 @@ const cardsList = new Section({
   },
   selectors.cardsList
 );
+
+
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
+  headers: {
+    authorization: '5755190e-89aa-4139-b42f-16592ed204be',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getUserInfo();
+
+
+
+
+
+
 
 function createCard(item) {
   const card = new Card(item, selectors.card, handleCardClick);

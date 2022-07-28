@@ -45,3 +45,4 @@ export const formEditUser = document.querySelector('.popup__form_type_edit-profi
 export const buttonEditUser = document.querySelector('.profile__edit');
 export const formAddCard = document.querySelector('.popup__form_type_add-card');
 export const buttonAddCard = document.querySelector('.profile__add-card');
+
