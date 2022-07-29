@@ -41,6 +41,12 @@ export const selectors = {
   submitButton: '.popup__submit'
 };
 
+export const config = {
+  key: '5755190e-89aa-4139-b42f-16592ed204be',
+  cohort: 'cohort-47',
+};
+
+
 export const formEditUser = document.querySelector('.popup__form_type_edit-profile');
 export const buttonEditUser = document.querySelector('.profile__edit');
 export const formAddCard = document.querySelector('.popup__form_type_add-card');

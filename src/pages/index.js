@@ -13,11 +13,11 @@ import {
   buttonAddCard,
   formEditUser,
   buttonEditUser,
-
+  config
 } from '../utils/constants.js';
 
 
-
+const api = new Api(config);
 const validateFormAddCard = new FormValidator(selectors, formAddCard);
 const validateFormEditUser = new FormValidator(selectors, formEditUser);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
@@ -36,17 +36,11 @@ const cardsList = new Section({
 
 
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
-  headers: {
-    authorization: '5755190e-89aa-4139-b42f-16592ed204be',
-    'Content-Type': 'application/json'
-  }
+
+
+api.getUserInfo().then(userData => {
+  userInfo.setUserInfo(userData);
 });
-
-api.getUserInfo();
-
-
 
 
 
