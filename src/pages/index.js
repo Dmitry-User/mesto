@@ -1,5 +1,5 @@
 import './index.css';
-import Api from '../components/Api';
+import { api } from '../components/Api';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -13,20 +13,23 @@ import {
   buttonAddCard,
   formEditUser,
   buttonEditUser,
-  config
+  configApi,
+  avatar
 } from '../utils/constants.js';
 
 
-const api = new Api(config);
+
+
+
 const validateFormAddCard = new FormValidator(selectors, formAddCard);
 const validateFormEditUser = new FormValidator(selectors, formEditUser);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const userInfo = new UserInfo(selectors);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
+
 const cardsList = new Section({
-  items: cardsData,
-    renderer: item => {
+      renderer: item => {
       const cardElement = createCard(item);
       cardsList.addItem(cardElement);
     }
@@ -34,20 +37,29 @@ const cardsList = new Section({
   selectors.cardsList
 );
 
+let userId;
 
 
 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userId = user._id;
+    userInfo.setUserInfo(user);
+    avatar.src = user.avatar;
 
-api.getUserInfo().then(userData => {
-  userInfo.setUserInfo(userData);
-});
+    // console.log(cards);
+    cardsList.renderItems(cards);
+  })
+  .catch(err => console.log(err))
+
 
 
 
 
 
 function createCard(item) {
-  const card = new Card(item, selectors.card, handleCardClick);
+  const card = new Card(item, userId, selectors.card, handleCardClick);
+  // console.log(item.owner._id);
   return card.generateCard();
 }
 
@@ -56,12 +68,15 @@ function handleCardClick(cardElement) {
 }
 
 function handleSubmitCard(cardData) {
-  const cardElement = createCard(cardData);
-  cardsList.addItem(cardElement);
+  api.addCard(cardData)
+  .then(createCard(cardData))
+  .then(cardsList.addItem(cardElement))
+
 }
 
 function handleSubmitUser(userData) {
-  userInfo.setUserInfo(userData);
+  api.changeUserInfo(userData)
+  .then(userInfo.setUserInfo(userData));
 }
 
 buttonAddCard.addEventListener('click', () => {
@@ -76,7 +91,8 @@ buttonEditUser.addEventListener('click', () => {
   userPopup.open();
 });
 
-cardsList.renderItems();
+
+
 imagePopup.setEventListener();
 cardPopup.setEventListeners();
 userPopup.setEventListeners();

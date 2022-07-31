@@ -1,46 +1,84 @@
-export default class Api {
 
+import { configApi } from "../utils/constants";
+class Api {
   constructor(settings) {
-    // тело конструктора
-    this._cohort = settings.cohort;
+    this._baseUrl = settings.baseUrl;
     this._key = settings.key;
   }
 
-  getInitialCards() {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohort}/cards`, {
-      headers: {
-        authorization: this._key
-      }
-    })
-
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+  _getResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getUserInfo() {
-
-    return fetch(`https://nomoreparties.co/v1/${this._cohort}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._key
       }
     })
-
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-
-    .catch((err) => {
-      console.log(err);
-    })
-
+    .then(this._getResponse)
   }
 
+  changeUserInfo(userData) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._key,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: userData.name,
+        about: userData.about
+      })
+    })
+    .then(this._getResponse)
+  }
+
+  changeAvatar() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._key
+      }
+    })
+    .then(this._getResponse)
+  }
+
+
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: {
+        authorization: this._key
+      }
+    })
+    .then(this._getResponse)
+  }
+
+  addCard(cardData) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._key,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: cardData.name,
+        link: cardData.link
+      })
+    })
+    .then(this._getResponse)
+  }
+
+  deleteCard(cardData) {
+    return fetch(`${this._baseUrl}/cards/${cardData._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._key,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._getResponse)
+  }
   // другие методы работы с API
 }
+
+export const api = new Api(configApi);
