@@ -7,24 +7,26 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import {
-  cardsData,
   selectors,
+  formEditAvatar,
+  formConfirmation,
+  buttonEditAvatar,
   formAddCard,
   buttonAddCard,
   formEditUser,
-  buttonEditUser,
-  configApi,
-  avatar
+  buttonEditUser
 } from '../utils/constants.js';
 
 
 
 
 
-const validateFormAddCard = new FormValidator(selectors, formAddCard);
-const validateFormEditUser = new FormValidator(selectors, formEditUser);
+const validateFormCard = new FormValidator(selectors, formAddCard);
+const validateFormUser = new FormValidator(selectors, formEditUser);
+const validateFormAvatar = new FormValidator(selectors, formEditAvatar);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
+const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const userInfo = new UserInfo(selectors);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 
@@ -38,6 +40,7 @@ const cardsList = new Section({
 );
 
 let userId;
+// const buttonSubmit = document.querySelector('.popup__submit');
 
 
 
@@ -45,12 +48,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
     userId = user._id;
     userInfo.setUserInfo(user);
-    avatar.src = user.avatar;
-
-    // console.log(cards);
     cardsList.renderItems(cards);
   })
-  .catch(err => console.log(err))
+  .catch(err => console.log(err));
 
 
 
@@ -59,7 +59,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 function createCard(item) {
   const card = new Card(item, userId, selectors.card, handleCardClick);
-  // console.log(item.owner._id);
   return card.generateCard();
 }
 
@@ -68,33 +67,70 @@ function handleCardClick(cardElement) {
 }
 
 function handleSubmitCard(cardData) {
+  cardPopup.renderLoading(true);
   api.addCard(cardData)
   .then(createCard(cardData))
-  .then(cardsList.addItem(cardElement))
-
+  .then(() => {
+    cardsList.addItem(cardElement);
+    cardPopup.close();
+  })
+  .catch(err => console.log(err))
+  .finally(() => {
+    cardPopup.renderLoading(false, 'Создать');
+  });
 }
 
 function handleSubmitUser(userData) {
-  api.changeUserInfo(userData)
-  .then(userInfo.setUserInfo(userData));
+  userPopup.renderLoading(true);
+  api.setUserInfo(userData)
+  .then(userData => {
+    userInfo.setUserInfo(userData);
+    userPopup.close();
+  })
+  .catch(err => console.log(err))
+  .finally(() => {
+    userPopup.renderLoading(false, 'Сохранить');
+  });
 }
 
+function handleSubmitAvatar(userData) {
+  avatarPopup.renderLoading(true);
+  api.setAvatar(userData)
+  .then(userData => {
+    userInfo.setUserInfo(userData);
+    avatarPopup.close();
+  })
+  .catch(err => console.log(err))
+  .finally(() => {
+    avatarPopup.renderLoading(false, 'Сохранить');
+  });
+}
+
+
+
+
 buttonAddCard.addEventListener('click', () => {
-  validateFormAddCard.resetValidation();
+  validateFormCard.resetValidation();
   cardPopup.open();
 });
 
 buttonEditUser.addEventListener('click', () => {
-  validateFormEditUser.resetValidation();
+  validateFormUser.resetValidation();
   const user = userInfo.getUserInfo();
   userPopup.setInputValues(user);
   userPopup.open();
 });
 
+buttonEditAvatar.addEventListener('click', () => {
+  validateFormAvatar.resetValidation();
+  avatarPopup.open();
+});
 
 
-imagePopup.setEventListener();
+avatarPopup.setEventListeners();
+validateFormAvatar.enableValidation();
 cardPopup.setEventListeners();
+validateFormCard.enableValidation();
 userPopup.setEventListeners();
-validateFormAddCard.enableValidation();
-validateFormEditUser.enableValidation();
+validateFormUser.enableValidation();
+imagePopup.setEventListener();

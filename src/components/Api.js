@@ -1,5 +1,5 @@
 
-import { configApi } from "../utils/constants";
+import { configApi } from "../utils/constants.js";
 class Api {
   constructor(settings) {
     this._baseUrl = settings.baseUrl;
@@ -19,7 +19,7 @@ class Api {
     .then(this._getResponse)
   }
 
-  changeUserInfo(userData) {
+  setUserInfo(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -34,11 +34,16 @@ class Api {
     .then(this._getResponse)
   }
 
-  changeAvatar() {
-    return fetch(`${this._baseUrl}/users/me`, {
+  setAvatar(userData) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
       headers: {
-        authorization: this._key
-      }
+        authorization: this._key,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: userData.avatar
+      })
     })
     .then(this._getResponse)
   }
