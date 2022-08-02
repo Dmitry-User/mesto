@@ -14,8 +14,10 @@ import {
   formAddCard,
   buttonAddCard,
   formEditUser,
-  buttonEditUser
+  buttonEditUser,
+  buttonDeleteCard
 } from '../utils/constants.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
 
 
 
@@ -27,8 +29,9 @@ const validateFormAvatar = new FormValidator(selectors, formEditAvatar);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
-const userInfo = new UserInfo(selectors);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
+const confirmationPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitDeleteCard);
+const userInfo = new UserInfo(selectors);
 
 const cardsList = new Section({
       renderer: item => {
@@ -41,6 +44,14 @@ const cardsList = new Section({
 
 let userId;
 // const buttonSubmit = document.querySelector('.popup__submit');
+
+
+
+
+
+// buttonDeleteCard.addEventListener('click', () => {
+//   confirmationPopup.open();
+// });
 
 
 
@@ -58,7 +69,13 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 
 function createCard(item) {
-  const card = new Card(item, userId, selectors.card, handleCardClick);
+  const card = new Card(
+    item,
+    userId,
+    selectors.card,
+    handleCardClick,
+    handleDeleteCard
+    );
   return card.generateCard();
 }
 
@@ -66,11 +83,22 @@ function handleCardClick(cardElement) {
   imagePopup.open(cardElement);
 }
 
+function handleDeleteCard () {
+  confirmationPopup.open();
+}
+
+function handleSubmitDeleteCard(cardData) {
+  // confirmationPopup.renderLoading(true);
+  api.deleteCard(cardData)
+  .then(confirmationPopup.close())
+  .catch(err => console.log(err))
+}
+
 function handleSubmitCard(cardData) {
   cardPopup.renderLoading(true);
   api.addCard(cardData)
   .then(createCard(cardData))
-  .then(() => {
+  .then((cardElement) => {
     cardsList.addItem(cardElement);
     cardPopup.close();
   })
@@ -79,6 +107,8 @@ function handleSubmitCard(cardData) {
     cardPopup.renderLoading(false, 'Создать');
   });
 }
+
+
 
 function handleSubmitUser(userData) {
   userPopup.renderLoading(true);
@@ -92,6 +122,8 @@ function handleSubmitUser(userData) {
     userPopup.renderLoading(false, 'Сохранить');
   });
 }
+
+
 
 function handleSubmitAvatar(userData) {
   avatarPopup.renderLoading(true);
@@ -127,6 +159,8 @@ buttonEditAvatar.addEventListener('click', () => {
 });
 
 
+
+confirmationPopup.setEventListeners();
 avatarPopup.setEventListeners();
 validateFormAvatar.enableValidation();
 cardPopup.setEventListeners();

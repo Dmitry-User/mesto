@@ -3,7 +3,7 @@ import { configApi } from "../utils/constants.js";
 class Api {
   constructor(settings) {
     this._baseUrl = settings.baseUrl;
-    this._key = settings.key;
+    this._token = settings.token;
   }
 
   _getResponse(res) {
@@ -13,7 +13,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._key
+        authorization: this._token
       }
     })
     .then(this._getResponse)
@@ -23,7 +23,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._key,
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -38,7 +38,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._key,
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -52,7 +52,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._key
+        authorization: this._token
       }
     })
     .then(this._getResponse)
@@ -62,7 +62,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._key,
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -77,7 +77,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardData._id}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._key,
+        authorization: this._token,
         'Content-Type': 'application/json'
       }
     })

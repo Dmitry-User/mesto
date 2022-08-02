@@ -10,11 +10,10 @@ export default class Card {
 
   _getTemplate() {
     const cardElement = document
-    .querySelector(this._cardSelector)
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
-
+      .querySelector(this._cardSelector)
+      .content
+      .querySelector('.card')
+      .cloneNode(true);
     return cardElement;
   }
 
@@ -28,9 +27,9 @@ export default class Card {
     this._buttonLike.classList.toggle('card__like_active');
   }
 
-  _handleDeleteCard() {
-    this._element.remove();
-    this._element = null;
+  deleteCard() {
+    this._card.remove();
+    this._card = null;
   }
   
   _hideDeleteButton() {
@@ -42,34 +41,27 @@ export default class Card {
 
 
   _setEventListeners() {
-    this._buttonLike.addEventListener('click', () => {
-      this._handleLikeButton();
-    });
-    this._buttonDelete.addEventListener('click', () => {
-      this._handleDeleteCard();
-    });
-    this._imageElement.addEventListener('click', () => {
-      this._handleCardClick(this._cardElement);
-    });
+    this._buttonLike.addEventListener('click', () => this._handleLikeButton());
+    this._buttonDelete.addEventListener('click', () => this._handleDeleteCard());
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardElement));
   }
 
 
 
   generateCard() {
-    this._element = this._getTemplate();
-    this._buttonLike = this._element.querySelector('.card__like');
-    this._buttonDelete = this._element.querySelector('.card__delete')
-    this._imageElement = this._element.querySelector('.card__image');
+    this._card = this._getTemplate();
+    this._cardImage = this._card.querySelector('.card__image');
+    this._cardTitle = this._card.querySelector('.card__title');
+    this._buttonLike = this._card.querySelector('.card__like');
+    this._buttonDelete = this._card.querySelector('.card__delete')
 
+    this._cardImage.src = this._cardElement.link;
+    this._cardTitle.textContent = this._cardElement.name;
+    this._cardImage.alt = `Фото ${this._cardElement.name}.`;
 
-    this._imageElement.src = this._cardElement.link;
-    this._element.querySelector('.card__title').textContent = this._cardElement.name;
-    this._imageElement.alt = `Фото ${this._cardElement.name}.`;
-    
     this._hideDeleteButton();
     this._setEventListeners();
-    return this._element;
+
+    return this._card;
   }
-
-
 }

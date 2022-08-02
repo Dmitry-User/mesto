@@ -21,7 +21,7 @@
     <main class="content">
       <section class="profile" aria-label="Секция профиль">
         <div class="profile__avatar">
-          <img src="" alt="Аватар" class="profile__avatar-image">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar-image">
           <button type="button" aria-label="Изменить аватар" class="profile__avatar-button"></button>
         </div>
         <div class="profile__description">
@@ -127,7 +127,7 @@
       <button type="button" aria-label="Закрыть" class="popup__close element-hover"></button>
       <h2 class="popup__title">Вы уверены?</h2>
       <form novalidate name="сonfirmation" class="popup__form popup__form_type_сonfirmation">
-        <button type="submit" aria-label="Да" value="" class="popup__submit">Да</button>
+        <button type="submit" aria-label="Согласие" value="" class="popup__submit">Да</button>
       </form>
     </div>
   </div>
@@ -146,11 +146,13 @@
       <img src="#" alt="" class="card__image">
       <div class="card__description">
         <h2 class="card__title"></h2>
-        <button type="button" aria-label="Поставить лайк" class="card__like"></button>
+        <div class="card__like-conteiner">
+          <button type="button" aria-label="Поставить лайк" class="card__like"></button>
+          <span class="card__like-count"></span>
+        </div>
       </div>
     </article>
   </template>
 
 </body>
-
 </html>
