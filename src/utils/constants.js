@@ -22,7 +22,6 @@ export const configApi = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47'
 };
 
-export const formConfirmation = document.querySelector('.popup__form_type_сonfirmation');
 export const avatar = document.querySelector('.profile__avatar-image');
 export const formEditAvatar = document.querySelector('.popup__form_type_edit-avatar');
 export const buttonEditAvatar = document.querySelector('.profile__avatar-button');
@@ -31,4 +30,5 @@ export const buttonEditUser = document.querySelector('.profile__edit');
 export const formAddCard = document.querySelector('.popup__form_type_add-card');
 export const buttonAddCard = document.querySelector('.profile__add-card');
 export const buttonDeleteCard = document.querySelector('.card__delete');
+export const formConfirmation = document.querySelector('.popup__form_type_сonfirmation');
 
