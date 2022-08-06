@@ -1,4 +1,5 @@
 export default class Api {
+
   constructor(settings) {
     this._baseUrl = settings.baseUrl;
     this._token = settings.token;
@@ -6,15 +7,6 @@ export default class Api {
 
   _getResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-  }
-
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(this._getResponse)
   }
 
   setUserInfo(userData) {
@@ -32,6 +24,15 @@ export default class Api {
     .then(this._getResponse)
   }
 
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._token
+      }
+    })
+    .then(this._getResponse)
+  }
+
   setAvatar(userData) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -45,7 +46,6 @@ export default class Api {
     })
     .then(this._getResponse)
   }
-
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
@@ -76,29 +76,26 @@ export default class Api {
       method: 'DELETE',
       headers: {
         authorization: this._token,
-        'Content-Type': 'application/json'
       }
     })
     .then(this._getResponse)
   }
 
-  putLike(card) {
-    return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
+  putLike(cardData) {
+    return fetch(`${this._baseUrl}/cards/${cardData._id}/likes`, {
       method: 'PUT',
       headers: {
         authorization: this._token,
-        'Content-Type': 'application/json'
       }
     })
     .then(this._getResponse)
   }
 
-  deleteLike(card) {
-    return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
+  removeLike(cardData) {
+    return fetch(`${this._baseUrl}/cards/${cardData._id}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: this._token,
-        'Content-Type': 'application/json'
       }
     })
     .then(this._getResponse)

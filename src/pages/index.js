@@ -32,7 +32,7 @@ const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
-const confirmationPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
+
 
 const userInfo = new UserInfo(selectors);
 
@@ -62,28 +62,28 @@ function createCard(cardData) {
     userId,
     selectors.card,
     handleCardClick,
-    handleDeleteCard,
-    handlePutLike,
-    handleRemoveLike
-    );
-    return card.generateCard();
-  }
-  
-  function handleCardClick(card) {
-    imagePopup.open(card);
-  }
+    deleteCard,
+    putLike,
+    removeLike
+  );
+  return card.generateCard();
+}
 
-  function handleDeleteCard(card) {
-    confirmationPopup.open(card);
-  }
+function handleCardClick(card) {
+  imagePopup.open(card);
+}
 
-  function handlePutLike(card) {
-    return api.putLike(card)
-  }
+function deleteCard(card) {
+  confirmPopup.open(card);
+}
 
-  function handleRemoveLike(card) {
-     return api.deleteLike(card)
-  }
+function putLike(card) {
+  return api.putLike(card)
+}
+
+function removeLike(card) {
+  return api.removeLike(card)
+}
 
 
 
@@ -103,33 +103,17 @@ function handleSubmitCard(cardData) {
 
 
 
+const confirmPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
 
 
-
-function handleSubmitConfirm(cardId) {
-  api.deleteCard(cardId)
+function handleSubmitConfirm(card) {
+  api.deleteCard(card._id)
     .then(() => {
       card.deleteCard();
-      confirmationPopup.close();
+      confirmPopup.close();
     })
   .catch(err => console.log(err))
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -194,4 +178,4 @@ avatarPopup.setEventListeners();
 validateFormCard.enableValidation();
 validateFormUser.enableValidation();
 validateFormAvatar.enableValidation();
-confirmationPopup.setEventListeners();
+confirmPopup.setEventListeners();
