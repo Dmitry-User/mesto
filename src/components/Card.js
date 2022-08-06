@@ -29,7 +29,6 @@ export default class Card {
     return cardElement;
   }
 
-
   _setCountLikes(cardData) {
     this._countLike.textContent = cardData.likes.length;
     if (cardData.likes.length < 1) {
@@ -52,8 +51,6 @@ export default class Card {
         : this._removeLike()
     })
   }
-
-
 
   _putLike() {
     this._handlePutLike(this._cardElement)
@@ -87,14 +84,12 @@ export default class Card {
     }
   }
 
-  // навешиваем слушатели на карточку
   _setEventListeners() {
     this._buttonLike.addEventListener('click', () => this._handleLikeButton());
     this._buttonDelete.addEventListener('click', () => this._handleDeleteCard(this._cardElement._id));
     this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardElement));
   }
 
-  // создаем карточку
   generateCard() {
     this._card = this._getTemplate();
     this._cardImage = this._card.querySelector('.card__image');
