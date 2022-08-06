@@ -1,6 +1,4 @@
-
-import { configApi } from "../utils/constants.js";
-class Api {
+export default class Api {
   constructor(settings) {
     this._baseUrl = settings.baseUrl;
     this._token = settings.token;
@@ -73,8 +71,8 @@ class Api {
     .then(this._getResponse)
   }
 
-  deleteCard(cardData) {
-    return fetch(`${this._baseUrl}/cards/${cardData._id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token,
@@ -83,7 +81,27 @@ class Api {
     })
     .then(this._getResponse)
   }
-  // другие методы работы с API
-}
 
-export const api = new Api(configApi);
+  putLike(card) {
+    return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._getResponse)
+  }
+
+  deleteLike(card) {
+    return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._getResponse)
+  }
+
+}

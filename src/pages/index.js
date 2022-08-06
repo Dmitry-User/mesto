@@ -1,11 +1,12 @@
 import './index.css';
-import { api } from '../components/Api';
-import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api';
+import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
+import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import UserInfo from '../components/UserInfo.js';
 import {
   selectors,
   formEditAvatar,
@@ -15,43 +16,144 @@ import {
   buttonAddCard,
   formEditUser,
   buttonEditUser,
+  configApi,
   buttonDeleteCard
 } from '../utils/constants.js';
-import PopupWithConfirmation from '../components/PopupWithConfirmation';
 
 
+// создаем элементы классов
+const api = new Api(configApi);
 
-
-
-const validateFormCard = new FormValidator(selectors, formAddCard);
 const validateFormUser = new FormValidator(selectors, formEditUser);
 const validateFormAvatar = new FormValidator(selectors, formEditAvatar);
-const imagePopup = new PopupWithImage(selectors.imagePopup);
+const validateFormCard = new FormValidator(selectors, formAddCard);
+
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
-const confirmationPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitDeleteCard);
+const imagePopup = new PopupWithImage(selectors.imagePopup);
+const confirmationPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
+
 const userInfo = new UserInfo(selectors);
 
-const cardsList = new Section({
-      renderer: item => {
+
+
+
+
+let userId;
+
+
+
+const cardsList = new Section(
+  {
+    renderer: item => {
       const cardElement = createCard(item);
-      cardsList.addItem(cardElement);
+      cardsList.addItemFromServer(cardElement);
     }
   },
   selectors.cardsList
 );
 
-let userId;
-// const buttonSubmit = document.querySelector('.popup__submit');
+
+
+function createCard(cardData) {
+  const card = new Card(
+    cardData,
+    userId,
+    selectors.card,
+    handleCardClick,
+    handleDeleteCard,
+    handlePutLike,
+    handleRemoveLike
+    );
+    return card.generateCard();
+  }
+  
+  function handleCardClick(card) {
+    imagePopup.open(card);
+  }
+
+  function handleDeleteCard(card) {
+    confirmationPopup.open(card);
+  }
+
+  function handlePutLike(card) {
+    return api.putLike(card)
+  }
+
+  function handleRemoveLike(card) {
+     return api.deleteLike(card)
+  }
+
+
+
+function handleSubmitCard(cardData) {
+  cardPopup.renderLoading(true);
+  api.addCard(cardData)
+    .then((res) => {
+      const cardElement = createCard(res);
+      cardsList.addItem(cardElement);
+      cardPopup.close();
+    })
+    .catch(err => console.log(err))
+  .finally(() => cardPopup.renderLoading(false));
+}
 
 
 
 
 
-// buttonDeleteCard.addEventListener('click', () => {
-//   confirmationPopup.open();
-// });
+
+
+
+function handleSubmitConfirm(cardId) {
+  api.deleteCard(cardId)
+    .then(() => {
+      card.deleteCard();
+      confirmationPopup.close();
+    })
+  .catch(err => console.log(err))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function handleSubmitUser(userData) {
+  userPopup.renderLoading(true);
+  api.setUserInfo(userData)
+    .then(userData => {
+      userInfo.setUserInfo(userData);
+      userPopup.close();
+    })
+  .catch(err => console.log(err))
+  .finally(() => userPopup.renderLoading(false));
+}
+
+function handleSubmitAvatar(userData) {
+  avatarPopup.renderLoading(true);
+  api.setAvatar(userData)
+  .then(userData => {
+    userInfo.setUserInfo(userData);
+    avatarPopup.close();
+  })
+  .catch(err => console.log(err))
+  .finally(() => avatarPopup.renderLoading(false));
+}
 
 
 
@@ -62,81 +164,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     cardsList.renderItems(cards);
   })
   .catch(err => console.log(err));
-
-
-
-
-
-
-function createCard(item) {
-  const card = new Card(
-    item,
-    userId,
-    selectors.card,
-    handleCardClick,
-    handleDeleteCard
-    );
-  return card.generateCard();
-}
-
-function handleCardClick(cardElement) {
-  imagePopup.open(cardElement);
-}
-
-function handleDeleteCard () {
-  confirmationPopup.open();
-}
-
-function handleSubmitDeleteCard(cardData) {
-  // confirmationPopup.renderLoading(true);
-  api.deleteCard(cardData)
-  .then(confirmationPopup.close())
-  .catch(err => console.log(err))
-}
-
-function handleSubmitCard(cardData) {
-  cardPopup.renderLoading(true);
-  api.addCard(cardData)
-  .then(createCard(cardData))
-  .then((cardElement) => {
-    cardsList.addItem(cardElement);
-    cardPopup.close();
-  })
-  .catch(err => console.log(err))
-  .finally(() => {
-    cardPopup.renderLoading(false, 'Создать');
-  });
-}
-
-
-
-function handleSubmitUser(userData) {
-  userPopup.renderLoading(true);
-  api.setUserInfo(userData)
-  .then(userData => {
-    userInfo.setUserInfo(userData);
-    userPopup.close();
-  })
-  .catch(err => console.log(err))
-  .finally(() => {
-    userPopup.renderLoading(false, 'Сохранить');
-  });
-}
-
-
-
-function handleSubmitAvatar(userData) {
-  avatarPopup.renderLoading(true);
-  api.setAvatar(userData)
-  .then(userData => {
-    userInfo.setUserInfo(userData);
-    avatarPopup.close();
-  })
-  .catch(err => console.log(err))
-  .finally(() => {
-    avatarPopup.renderLoading(false, 'Сохранить');
-  });
-}
 
 
 
@@ -160,11 +187,11 @@ buttonEditAvatar.addEventListener('click', () => {
 
 
 
-confirmationPopup.setEventListeners();
-avatarPopup.setEventListeners();
-validateFormAvatar.enableValidation();
 cardPopup.setEventListeners();
-validateFormCard.enableValidation();
-userPopup.setEventListeners();
-validateFormUser.enableValidation();
 imagePopup.setEventListener();
+userPopup.setEventListeners();
+avatarPopup.setEventListeners();
+validateFormCard.enableValidation();
+validateFormUser.enableValidation();
+validateFormAvatar.enableValidation();
+confirmationPopup.setEventListeners();
