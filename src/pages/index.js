@@ -18,29 +18,16 @@ import {
   configApi
 } from '../utils/constants.js';
 
-
-// создаем элементы классов
 const api = new Api(configApi);
-
 const validateFormUser = new FormValidator(selectors, formEditUser);
 const validateFormAvatar = new FormValidator(selectors, formEditAvatar);
 const validateFormCard = new FormValidator(selectors, formAddCard);
-
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
-
-
-const userInfo = new UserInfo(selectors);
-
 const confirmPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
-
-
-let userId;
-
-
-
+const userInfo = new UserInfo(selectors);
 const cardsList = new Section(
   {
     renderer: item => {
@@ -50,6 +37,8 @@ const cardsList = new Section(
   },
   selectors.cardsList
 );
+
+let userId;
 
 function createCard(cardData) {
   const card = new Card(
@@ -80,8 +69,6 @@ function handleRemoveLike(cardData) {
   return api.removeLike(cardData)
 }
 
-
-
 function handleSubmitCard(cardData) {
   cardPopup.renderLoading(true);
   api.addCard(cardData)
@@ -96,18 +83,14 @@ function handleSubmitCard(cardData) {
   });
 }
 
-
 function handleSubmitConfirm(card) {
-  api.deleteCard(card._cardId)
+  api.deleteCard(card._cardElement)
     .then(() => {
       card.deleteCard()
     })
     .catch(err => console.log(err))
     .finally(() => confirmPopup.close());
 }
-
-
-
 
 function handleSubmitUser(userData) {
   userPopup.renderLoading(true);
@@ -135,8 +118,6 @@ function handleSubmitAvatar(userData) {
     });
 }
 
-
-
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
     userId = user._id;
@@ -144,9 +125,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     cardsList.renderItems(cards);
   })
   .catch(err => console.log(err));
-
-
-
 
 buttonAddCard.addEventListener('click', () => {
   validateFormCard.resetValidation();
@@ -165,13 +143,11 @@ buttonEditAvatar.addEventListener('click', () => {
   avatarPopup.open();
 });
 
-
-
 cardPopup.setEventListeners();
 imagePopup.setEventListener();
 userPopup.setEventListeners();
 avatarPopup.setEventListeners();
+confirmPopup.setEventListeners();
 validateFormCard.enableValidation();
 validateFormUser.enableValidation();
 validateFormAvatar.enableValidation();
-confirmPopup.setEventListeners();

@@ -12,8 +12,6 @@ export default class Card {
     ) {
     this._cardElement = cardData;
     this._userId = userId;
-    this._cardId = cardData._id;
-    this._cardLikes = cardData.likes;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
@@ -39,7 +37,7 @@ export default class Card {
   }
 
   _rendererUserLike() {
-    this._cardLikes.forEach(user => {
+    this._cardElement.likes.forEach(user => {
       user._id === this._userId
       ? this._isLike()
       : this._isDislike();
@@ -48,9 +46,6 @@ export default class Card {
 
   _setCountLikes(cardData) {
     this._countLike.textContent = cardData.likes.length;
-    if (cardData.likes.length < 1) {
-      this._countLike.textContent = null;
-    }
   }
 
   _putLike() {
@@ -109,7 +104,6 @@ export default class Card {
 
     return this._card;
   }
-
 
   deleteCard() {
     this._card.remove();

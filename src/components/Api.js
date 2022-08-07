@@ -9,15 +9,6 @@ export default class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(this._getResponse)
-  }
-
   setUserInfo(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -29,6 +20,15 @@ export default class Api {
         name: userData.name,
         about: userData.about
       })
+    })
+    .then(this._getResponse)
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._token
+      }
     })
     .then(this._getResponse)
   }
@@ -71,8 +71,8 @@ export default class Api {
     .then(this._getResponse)
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(cardData) {
+    return fetch(`${this._baseUrl}/cards/${cardData._id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token,
