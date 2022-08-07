@@ -10,14 +10,12 @@ import Section from '../components/Section.js';
 import {
   selectors,
   formEditAvatar,
-  formConfirmation,
   buttonEditAvatar,
   formAddCard,
   buttonAddCard,
   formEditUser,
   buttonEditUser,
-  configApi,
-  buttonDeleteCard
+  configApi
 } from '../utils/constants.js';
 
 
@@ -36,8 +34,7 @@ const imagePopup = new PopupWithImage(selectors.imagePopup);
 
 const userInfo = new UserInfo(selectors);
 
-
-
+const confirmPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
 
 
 let userId;
@@ -54,35 +51,33 @@ const cardsList = new Section(
   selectors.cardsList
 );
 
-
-
 function createCard(cardData) {
   const card = new Card(
     cardData,
     userId,
     selectors.card,
     handleCardClick,
-    deleteCard,
-    putLike,
-    removeLike
+    handleDeleteCard,
+    handlePutLike,
+    handleRemoveLike
   );
   return card.generateCard();
 }
 
-function handleCardClick(card) {
-  imagePopup.open(card);
+function handleCardClick(cardData) {
+  imagePopup.open(cardData);
 }
 
-function deleteCard(card) {
-  confirmPopup.open(card);
+function handleDeleteCard(cardData) {
+  confirmPopup.open(cardData);
 }
 
-function putLike(card) {
-  return api.putLike(card)
+function handlePutLike(cardData) {
+  return api.putLike(cardData)
 }
 
-function removeLike(card) {
-  return api.removeLike(card)
+function handleRemoveLike(cardData) {
+  return api.removeLike(cardData)
 }
 
 
@@ -93,27 +88,24 @@ function handleSubmitCard(cardData) {
     .then((res) => {
       const cardElement = createCard(res);
       cardsList.addItem(cardElement);
-      cardPopup.close();
     })
     .catch(err => console.log(err))
-  .finally(() => cardPopup.renderLoading(false));
+  .finally(() => {
+    cardPopup.close();
+    cardPopup.renderLoading(false);
+  });
 }
-
-
-
-
-
-const confirmPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
 
 
 function handleSubmitConfirm(card) {
-  api.deleteCard(card._id)
+  api.deleteCard(card._cardId)
     .then(() => {
-      card.deleteCard();
-      confirmPopup.close();
+      card.deleteCard()
     })
-  .catch(err => console.log(err))
+    .catch(err => console.log(err))
+    .finally(() => confirmPopup.close());
 }
+
 
 
 
@@ -122,21 +114,25 @@ function handleSubmitUser(userData) {
   api.setUserInfo(userData)
     .then(userData => {
       userInfo.setUserInfo(userData);
-      userPopup.close();
     })
-  .catch(err => console.log(err))
-  .finally(() => userPopup.renderLoading(false));
+    .catch(err => console.log(err))
+    .finally(() => {
+      userPopup.close();
+      userPopup.renderLoading(false);
+    });
 }
 
 function handleSubmitAvatar(userData) {
   avatarPopup.renderLoading(true);
   api.setAvatar(userData)
-  .then(userData => {
-    userInfo.setUserInfo(userData);
-    avatarPopup.close();
-  })
-  .catch(err => console.log(err))
-  .finally(() => avatarPopup.renderLoading(false));
+    .then(userData => {
+      userInfo.setUserInfo(userData);
+    })
+    .catch(err => console.log(err))
+    .finally(() => {
+      avatarPopup.close();
+      avatarPopup.renderLoading(false);
+    });
 }
 
 

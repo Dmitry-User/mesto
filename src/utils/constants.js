@@ -31,4 +31,3 @@ export const formAddCard = document.querySelector('.popup__form_type_add-card');
 export const buttonAddCard = document.querySelector('.profile__add-card');
 export const buttonDeleteCard = document.querySelector('.card__delete');
 export const formConfirmation = document.querySelector('.popup__form_type_сonfirmation');
-
