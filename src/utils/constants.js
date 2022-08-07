@@ -5,7 +5,7 @@ export const selectors = {
   imagePopup: '.popup_type_full-image',
   userPopup: '.popup_type_edit-profile',
   avatarPopup: '.popup_type_edit-avatar',
-  сonfirmationPopup: '.popup_type_сonfirmation',
+  cardDeletePopup: '.popup_type_delete-card',
   nameUser: '.profile__name',
   aboutUser: '.profile__about',
   avatarUser: '.profile__avatar-image',
@@ -30,4 +30,3 @@ export const buttonEditUser = document.querySelector('.profile__edit');
 export const formAddCard = document.querySelector('.popup__form_type_add-card');
 export const buttonAddCard = document.querySelector('.profile__add-card');
 export const buttonDeleteCard = document.querySelector('.card__delete');
-export const formConfirmation = document.querySelector('.popup__form_type_сonfirmation');

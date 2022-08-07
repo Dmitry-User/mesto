@@ -26,7 +26,7 @@ const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
-const confirmPopup = new PopupWithConfirmation(selectors.сonfirmationPopup, handleSubmitConfirm);
+const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
 const userInfo = new UserInfo(selectors);
 const cardsList = new Section(
   {
@@ -56,7 +56,7 @@ function createCard(cardData) {
 }
 
 function handleDeleteCard(cardData) {
-  confirmPopup.open(cardData);
+  confirmationPopup.open(cardData);
 }
 
 function handleSubmitCard(cardData) {
@@ -73,13 +73,17 @@ function handleSubmitCard(cardData) {
   });
 }
 
-function handleSubmitConfirm(card) {
+function handleSubmitDeleteCard(card) {
+  confirmationPopup.renderLoading(true);
   api.deleteCard(card._cardElement)
     .then(() => {
       card.deleteCard();
     })
     .catch(err => console.log(err))
-    .finally(() => confirmPopup.close());
+    .finally(() => {
+      confirmationPopup.close();
+      confirmationPopup.renderLoading(false);
+    });
 }
 
 function handleSubmitUser(userData) {
@@ -137,7 +141,7 @@ cardPopup.setEventListeners();
 imagePopup.setEventListener();
 userPopup.setEventListeners();
 avatarPopup.setEventListeners();
-confirmPopup.setEventListeners();
+confirmationPopup.setEventListeners();
 validateFormCard.enableValidation();
 validateFormUser.enableValidation();
 validateFormAvatar.enableValidation();
