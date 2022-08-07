@@ -5,16 +5,18 @@ export default class Card {
       cardData,
       userId,
       cardSelector,
-      handleCardClick,
       handleDeleteCard,
-      handlePutLike,
-      handleRemoveLike
+      {
+        handleCardClick,
+        handlePutLike,
+        handleRemoveLike
+      }
     ) {
     this._cardElement = cardData;
     this._userId = userId;
     this._cardSelector = cardSelector;
-    this._handleCardClick = handleCardClick;
-    this._handleDeleteCard = handleDeleteCard;
+    this._deleteCard = handleDeleteCard;
+    this._clickCard = handleCardClick;
     this._handlePutLike = handlePutLike;
     this._handleRemoveLike = handleRemoveLike;
   }
@@ -81,8 +83,8 @@ export default class Card {
 
   _setEventListeners() {
     this._buttonLike.addEventListener('click', () => this._handleLikeButton());
-    this._buttonDelete.addEventListener('click', () => this._handleDeleteCard(this));
-    this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardElement));
+    this._buttonDelete.addEventListener('click', () => this._deleteCard(this));
+    this._cardImage.addEventListener('click', () => this._clickCard(this._cardElement));
   }
 
   generateCard() {

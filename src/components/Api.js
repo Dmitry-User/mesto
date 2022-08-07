@@ -75,7 +75,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardData._id}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
+        authorization: this._token
       }
     })
     .then(this._getResponse)
@@ -85,7 +85,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardData._id}/likes`, {
       method: 'PUT',
       headers: {
-        authorization: this._token,
+        authorization: this._token
       }
     })
     .then(this._getResponse)
@@ -95,10 +95,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardData._id}/likes`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
+        authorization: this._token
       }
     })
     .then(this._getResponse)
   }
-
 }

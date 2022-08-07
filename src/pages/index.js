@@ -45,28 +45,18 @@ function createCard(cardData) {
     cardData,
     userId,
     selectors.card,
-    handleCardClick,
     handleDeleteCard,
-    handlePutLike,
-    handleRemoveLike
+    {
+      handleCardClick: () => imagePopup.open(cardData),
+      handlePutLike: () => api.putLike(cardData),
+      handleRemoveLike: () => api.removeLike(cardData)
+    }
   );
   return card.generateCard();
 }
 
-function handleCardClick(cardData) {
-  imagePopup.open(cardData);
-}
-
 function handleDeleteCard(cardData) {
   confirmPopup.open(cardData);
-}
-
-function handlePutLike(cardData) {
-  return api.putLike(cardData)
-}
-
-function handleRemoveLike(cardData) {
-  return api.removeLike(cardData)
 }
 
 function handleSubmitCard(cardData) {
@@ -86,7 +76,7 @@ function handleSubmitCard(cardData) {
 function handleSubmitConfirm(card) {
   api.deleteCard(card._cardElement)
     .then(() => {
-      card.deleteCard()
+      card.deleteCard();
     })
     .catch(err => console.log(err))
     .finally(() => confirmPopup.close());
