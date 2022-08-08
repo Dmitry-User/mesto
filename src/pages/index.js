@@ -9,51 +9,53 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import {
   selectors,
-  formEditAvatar,
+  configApi,
   buttonEditAvatar,
-  formAddCard,
   buttonAddCard,
-  formEditUser,
-  buttonEditUser,
-  configApi
+  buttonEditUser
 } from '../utils/constants.js';
 
+let userId;
+
 const api = new Api(configApi);
-const validateFormUser = new FormValidator(selectors, formEditUser);
-const validateFormAvatar = new FormValidator(selectors, formEditAvatar);
-const validateFormCard = new FormValidator(selectors, formAddCard);
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
 const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
 const userInfo = new UserInfo(selectors);
+
+const formValidators = {};
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+enableValidation(selectors);
+
 const cardsList = new Section(
   {
     renderer: item => {
-      const cardElement = createCard(item);
-      cardsList.addItemFromServer(cardElement);
+      const card = new Card(
+        item,
+        userId,
+        selectors.card,
+        handleCardClick,
+        handleDeleteCard,
+        handleLike
+      );
+      return card.generateCard();
     }
   },
   selectors.cardsList
 );
 
-let userId;
-
-function createCard(cardData) {
-  const card = new Card(
-    cardData,
-    userId,
-    selectors.card,
-    handleCardClick,
-    handleDeleteCard,
-    handleLike
-  );
-  return card.generateCard();
-}
-
 function handleCardClick(card) {
-  imagePopup.open(card.cardData);
+  imagePopup.open(card.link, card.name);
 }
 
 function handleDeleteCard(cardData) {
@@ -62,13 +64,13 @@ function handleDeleteCard(cardData) {
 
 function handleLike(card) {
   if (!this.isLiked()) {
-    api.addLike(card.cardData)
+    api.addLike(card.cardId)
       .then((res) => {
         this.updateLikes(res);
       })
       .catch(err => console.log(err))
   } else {
-    api.removeLike(card.cardData)
+    api.removeLike(card.cardId)
       .then((res) => {
         this.updateLikes(res);
       })
@@ -80,8 +82,7 @@ function handleSubmitCard(cardData) {
   cardPopup.renderLoading(true);
   api.addCard(cardData)
     .then((res) => {
-      const cardElement = createCard(res);
-      cardsList.addItem(cardElement);
+      cardsList.addItem(res);
       cardPopup.close();
     })
     .catch(err => console.log(err))
@@ -92,7 +93,7 @@ function handleSubmitCard(cardData) {
 
 function handleSubmitDeleteCard(card) {
   confirmationPopup.renderLoading(true);
-  api.deleteCard(card.cardData)
+  api.deleteCard(card.cardId)
     .then(() => {
       card.deleteCard();
       confirmationPopup.close();
@@ -138,19 +139,19 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch(err => console.log(err));
 
 buttonAddCard.addEventListener('click', () => {
-  validateFormCard.resetValidation();
+  formValidators['add-card'].resetValidation();
   cardPopup.open();
 });
 
 buttonEditUser.addEventListener('click', () => {
-  validateFormUser.resetValidation();
+  formValidators['edit-profile'].resetValidation();
   const user = userInfo.getUserInfo();
   userPopup.setInputValues(user);
   userPopup.open();
 });
 
 buttonEditAvatar.addEventListener('click', () => {
-  validateFormAvatar.resetValidation();
+  formValidators['edit-avatar'].resetValidation();
   avatarPopup.open();
 });
 
@@ -159,6 +160,3 @@ imagePopup.setEventListener();
 userPopup.setEventListeners();
 avatarPopup.setEventListeners();
 confirmationPopup.setEventListeners();
-validateFormCard.enableValidation();
-validateFormUser.enableValidation();
-validateFormAvatar.enableValidation();

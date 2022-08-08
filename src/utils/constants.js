@@ -14,7 +14,8 @@ export const selectors = {
   inputErrorClass: 'popup__input_error',
   errorClass: 'popup__error_visible',
   inactiveButtonClass: 'popup__submit_disable',
-  submitButton: '.popup__submit'
+  submitButton: '.popup__submit',
+  formSelector: '.popup__form'
 };
 
 export const configApi = {
@@ -26,10 +27,6 @@ export const configApi = {
 };
 
 export const avatar = document.querySelector('.profile__avatar-image');
-export const formEditAvatar = document.querySelector('.popup__form_type_edit-avatar');
 export const buttonEditAvatar = document.querySelector('.profile__avatar-button');
-export const formEditUser = document.querySelector('.popup__form_type_edit-profile');
 export const buttonEditUser = document.querySelector('.profile__edit');
-export const formAddCard = document.querySelector('.popup__form_type_add-card');
 export const buttonAddCard = document.querySelector('.profile__add-card');
-export const buttonDeleteCard = document.querySelector('.card__delete');
