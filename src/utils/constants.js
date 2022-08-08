@@ -18,8 +18,11 @@ export const selectors = {
 };
 
 export const configApi = {
-  token: '5755190e-89aa-4139-b42f-16592ed204be',
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47'
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
+  headers: {
+    authorization: '5755190e-89aa-4139-b42f-16592ed204be',
+    'Content-Type': 'application/json'
+  }
 };
 
 export const avatar = document.querySelector('.profile__avatar-image');

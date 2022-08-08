@@ -45,18 +45,35 @@ function createCard(cardData) {
     cardData,
     userId,
     selectors.card,
+    handleCardClick,
     handleDeleteCard,
-    {
-      handleCardClick: () => imagePopup.open(cardData),
-      handlePutLike: () => api.putLike(cardData),
-      handleRemoveLike: () => api.removeLike(cardData)
-    }
+    handleLike
   );
   return card.generateCard();
 }
 
+function handleCardClick(card) {
+  imagePopup.open(card.cardData);
+}
+
 function handleDeleteCard(cardData) {
   confirmationPopup.open(cardData);
+}
+
+function handleLike(card) {
+  if (!this.isLiked()) {
+    api.addLike(card.cardData)
+      .then((res) => {
+        this.updateLikes(res);
+      })
+      .catch(err => console.log(err))
+  } else {
+    api.removeLike(card.cardData)
+      .then((res) => {
+        this.updateLikes(res);
+      })
+      .catch(err => console.log(err))
+  }
 }
 
 function handleSubmitCard(cardData) {
@@ -65,23 +82,23 @@ function handleSubmitCard(cardData) {
     .then((res) => {
       const cardElement = createCard(res);
       cardsList.addItem(cardElement);
+      cardPopup.close();
     })
     .catch(err => console.log(err))
   .finally(() => {
-    cardPopup.close();
     cardPopup.renderLoading(false);
   });
 }
 
 function handleSubmitDeleteCard(card) {
   confirmationPopup.renderLoading(true);
-  api.deleteCard(card._cardElement)
+  api.deleteCard(card.cardData)
     .then(() => {
       card.deleteCard();
+      confirmationPopup.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
-      confirmationPopup.close();
       confirmationPopup.renderLoading(false);
     });
 }
@@ -91,10 +108,10 @@ function handleSubmitUser(userData) {
   api.setUserInfo(userData)
     .then(userData => {
       userInfo.setUserInfo(userData);
+      userPopup.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
-      userPopup.close();
       userPopup.renderLoading(false);
     });
 }
@@ -104,10 +121,10 @@ function handleSubmitAvatar(userData) {
   api.setAvatar(userData)
     .then(userData => {
       userInfo.setUserInfo(userData);
+      avatarPopup.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
-      avatarPopup.close();
       avatarPopup.renderLoading(false);
     });
 }
