@@ -15,7 +15,7 @@ export const selectors = {
   errorClass: 'popup__error_visible',
   inactiveButtonClass: 'popup__submit_disable',
   submitButton: '.popup__submit',
-  formSelector: '.popup__form'
+  formSelector: '.form'
 };
 
 export const configApi = {
