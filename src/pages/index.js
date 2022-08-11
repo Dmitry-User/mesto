@@ -101,6 +101,7 @@ buttonAddCard.addEventListener('click', () => {
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 imagePopup.setEventListener();
 
+// ----------- Confirmation popup ------------
 function handleSubmitDeleteCard(card) {
   confirmationPopup.renderLoading(true);
   api.deleteCard(card.cardId)
@@ -114,10 +115,10 @@ function handleSubmitDeleteCard(card) {
     });
 }
 
-// ----------- Confirmation popup ------------
 const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
 confirmationPopup.setEventListeners();
 
+// ----------- User popup ------------
 function handleSubmitUser(userData) {
   userPopup.renderLoading(true);
   api.setUserInfo(userData)
@@ -131,7 +132,6 @@ function handleSubmitUser(userData) {
     });
 }
 
-// ----------- User popup ------------
 const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
 userPopup.setEventListeners();
 

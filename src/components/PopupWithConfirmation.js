@@ -7,11 +7,24 @@ export default class PopupWithConfirmation extends Popup {
     this._handleSubmitConfirm = handleSubmitConfirm;
     this._form = this._popup.querySelector('.popup__form');
     this._buttonSubmit = this._form.querySelector('.popup__submit');
+    this._handleEnterSubmitConfirm = this._handleEnterSubmitConfirm.bind(this);
+  }
+
+  _handleEnterSubmitConfirm(evt) {
+    if (evt.key === 'Enter') {
+      this._handleSubmitConfirm(this._card);
+    }
   }
 
   open(cardData) {
     this._card = cardData;
+    document.addEventListener('keydown', this._handleEnterSubmitConfirm);
     super.open();
+  }
+
+  close() {
+    document.removeEventListener('keydown', this._handleEnterSubmitConfirm);
+    super.close();
   }
 
   setEventListeners() {
