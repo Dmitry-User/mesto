@@ -18,13 +18,9 @@ import {
 let userId;
 
 const api = new Api(configApi);
-const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
-const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
-const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
-const imagePopup = new PopupWithImage(selectors.imagePopup);
-const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
 const userInfo = new UserInfo(selectors);
 
+// ----------- Validation forms ------------
 const formValidators = {};
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
@@ -37,23 +33,7 @@ const enableValidation = (config) => {
 };
 enableValidation(selectors);
 
-const cardsList = new Section(
-  {
-    renderer: item => {
-      const card = new Card(
-        item,
-        userId,
-        selectors.card,
-        handleCardClick,
-        handleDeleteCard,
-        handleLike
-      );
-      return card.generateCard();
-    }
-  },
-  selectors.cardsList
-);
-
+// ----------- Renderer card ------------
 function handleCardClick(card) {
   imagePopup.open(card.link, card.name);
 }
@@ -78,6 +58,24 @@ function handleLike(card) {
   }
 }
 
+const cardsList = new Section(
+  {
+    renderer: item => {
+      const card = new Card(
+        item,
+        userId,
+        selectors.card,
+        handleCardClick,
+        handleDeleteCard,
+        handleLike
+      );
+      return card.generateCard();
+    }
+  },
+  selectors.cardsList
+);
+
+// ----------- Card popup------------
 function handleSubmitCard(cardData) {
   cardPopup.renderLoading(true);
   api.addCard(cardData)
@@ -90,6 +88,18 @@ function handleSubmitCard(cardData) {
     cardPopup.renderLoading(false);
   });
 }
+
+const cardPopup = new PopupWithForm(selectors.cardPopup, handleSubmitCard);
+cardPopup.setEventListeners();
+
+buttonAddCard.addEventListener('click', () => {
+  formValidators['add-card'].resetValidation();
+  cardPopup.open();
+});
+
+// ----------- Image popup ------------
+const imagePopup = new PopupWithImage(selectors.imagePopup);
+imagePopup.setEventListener();
 
 function handleSubmitDeleteCard(card) {
   confirmationPopup.renderLoading(true);
@@ -104,6 +114,10 @@ function handleSubmitDeleteCard(card) {
     });
 }
 
+// ----------- Confirmation popup ------------
+const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
+confirmationPopup.setEventListeners();
+
 function handleSubmitUser(userData) {
   userPopup.renderLoading(true);
   api.setUserInfo(userData)
@@ -117,6 +131,18 @@ function handleSubmitUser(userData) {
     });
 }
 
+// ----------- User popup ------------
+const userPopup = new PopupWithForm(selectors.userPopup, handleSubmitUser);
+userPopup.setEventListeners();
+
+buttonEditUser.addEventListener('click', () => {
+  formValidators['edit-profile'].resetValidation();
+  const user = userInfo.getUserInfo();
+  userPopup.setInputValues(user);
+  userPopup.open();
+});
+
+// ----------- Avatar popup ------------
 function handleSubmitAvatar(userData) {
   avatarPopup.renderLoading(true);
   api.setAvatar(userData)
@@ -130,6 +156,15 @@ function handleSubmitAvatar(userData) {
     });
 }
 
+const avatarPopup = new PopupWithForm(selectors.avatarPopup, handleSubmitAvatar);
+avatarPopup.setEventListeners();
+
+buttonEditAvatar.addEventListener('click', () => {
+  formValidators['edit-avatar'].resetValidation();
+  avatarPopup.open();
+});
+
+// ----------- Initial user info and cards data ------------
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
     userId = user._id;
@@ -137,26 +172,3 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     cardsList.renderItems(cards);
   })
   .catch(err => console.log(err));
-
-buttonAddCard.addEventListener('click', () => {
-  formValidators['add-card'].resetValidation();
-  cardPopup.open();
-});
-
-buttonEditUser.addEventListener('click', () => {
-  formValidators['edit-profile'].resetValidation();
-  const user = userInfo.getUserInfo();
-  userPopup.setInputValues(user);
-  userPopup.open();
-});
-
-buttonEditAvatar.addEventListener('click', () => {
-  formValidators['edit-avatar'].resetValidation();
-  avatarPopup.open();
-});
-
-cardPopup.setEventListeners();
-imagePopup.setEventListener();
-userPopup.setEventListeners();
-avatarPopup.setEventListeners();
-confirmationPopup.setEventListeners();
