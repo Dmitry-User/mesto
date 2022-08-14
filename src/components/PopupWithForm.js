@@ -32,9 +32,9 @@ export default class PopupWithForm extends Popup {
     super.setEventListener();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, text) {
     isLoading
-    ? this._buttonSubmit.textContent = 'Сохранение...'
+    ? this._buttonSubmit.textContent = text
     : this._buttonSubmit.textContent = this._initialButtonSubmit;
   }
 

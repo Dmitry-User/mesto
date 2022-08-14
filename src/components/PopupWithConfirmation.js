@@ -36,9 +36,9 @@ export default class PopupWithConfirmation extends Popup {
     super.setEventListener();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, text) {
     isLoading
-    ? this._buttonSubmit.textContent = 'Удаление...'
+    ? this._buttonSubmit.textContent = text
     : this._buttonSubmit.textContent = this._initialButtonSubmit;
   }
 }

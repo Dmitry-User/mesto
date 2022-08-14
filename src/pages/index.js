@@ -80,7 +80,7 @@ const cardsList = new Section(
 
 // ----------- Card popup------------
 function handleSubmitCard(cardData) {
-  cardPopup.renderLoading(true);
+  cardPopup.renderLoading(true, 'Сохранение...');
   api.addCard(cardData)
     .then((res) => {
       cardsList.addItem(res);
@@ -108,7 +108,7 @@ imagePopup.setEventListener();
 
 // ----------- Confirmation popup ------------
 function handleSubmitDeleteCard(card) {
-  confirmationPopup.renderLoading(true);
+  confirmationPopup.renderLoading(true, 'Удаление...');
   api.deleteCard(card.cardId)
     .then(() => {
       card.deleteCard();
@@ -126,7 +126,7 @@ confirmationPopup.setEventListeners();
 
 // ----------- User popup ------------
 function handleSubmitUser(userData) {
-  userPopup.renderLoading(true);
+  userPopup.renderLoading(true, 'Сохранение...');
   api.setUserInfo(userData)
     .then(userData => {
       userInfo.setUserInfo(userData);
@@ -151,7 +151,7 @@ buttonEditUser.addEventListener('click', () => {
 
 // ----------- Avatar popup ------------
 function handleSubmitAvatar(userData) {
-  avatarPopup.renderLoading(true);
+  avatarPopup.renderLoading(true, 'Сохранение...');
   api.setAvatar(userData)
     .then(userData => {
       userInfo.setUserInfo(userData);
