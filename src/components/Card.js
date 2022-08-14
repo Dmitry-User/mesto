@@ -48,7 +48,7 @@ export default class Card {
   }
 
   _rendererUserLike() {
-    this._likes.forEach(user => {
+    this._likes.some(user => {
       user._id === this._userId
       ? this._addLike()
       : this._deleteLike();

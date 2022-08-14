@@ -20,6 +20,7 @@ let userId;
 const api = new Api(configApi);
 const userInfo = new UserInfo(selectors);
 
+
 // ----------- Validation forms ------------
 const formValidators = {};
 const enableValidation = (config) => {
@@ -32,6 +33,7 @@ const enableValidation = (config) => {
   });
 };
 enableValidation(selectors);
+
 
 // ----------- Renderer card ------------
 function handleCardClick(card) {
@@ -75,6 +77,7 @@ const cardsList = new Section(
   selectors.cardsList
 );
 
+
 // ----------- Card popup------------
 function handleSubmitCard(cardData) {
   cardPopup.renderLoading(true);
@@ -97,9 +100,11 @@ buttonAddCard.addEventListener('click', () => {
   cardPopup.open();
 });
 
+
 // ----------- Image popup ------------
 const imagePopup = new PopupWithImage(selectors.imagePopup);
 imagePopup.setEventListener();
+
 
 // ----------- Confirmation popup ------------
 function handleSubmitDeleteCard(card) {
@@ -117,6 +122,7 @@ function handleSubmitDeleteCard(card) {
 
 const confirmationPopup = new PopupWithConfirmation(selectors.cardDeletePopup, handleSubmitDeleteCard);
 confirmationPopup.setEventListeners();
+
 
 // ----------- User popup ------------
 function handleSubmitUser(userData) {
@@ -142,6 +148,7 @@ buttonEditUser.addEventListener('click', () => {
   userPopup.open();
 });
 
+
 // ----------- Avatar popup ------------
 function handleSubmitAvatar(userData) {
   avatarPopup.renderLoading(true);
@@ -163,6 +170,7 @@ buttonEditAvatar.addEventListener('click', () => {
   formValidators['edit-avatar'].resetValidation();
   avatarPopup.open();
 });
+
 
 // ----------- Initial user info and cards data ------------
 Promise.all([api.getUserInfo(), api.getInitialCards()])
