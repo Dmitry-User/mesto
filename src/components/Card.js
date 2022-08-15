@@ -9,11 +9,11 @@ export default class Card {
       handleDeleteCard,
       handleLike
     ) {
+    this._likes = likes;
     this.link = link;
     this.name = name;
-    this.cardId = _id;
-    this._likes = likes;
     this._owner = owner;
+    this.cardId = _id;
     this._userId = userId;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
@@ -47,19 +47,19 @@ export default class Card {
     this._countLike.textContent = item.length;
   }
 
-  _rendererUserLike() {
-    this._likes.some(user => {
-      user._id === this._userId
-      ? this._addLike()
-      : this._deleteLike();
-    })
-  }
-
   updateLikes(item) {
     this.isLiked()
     ? this._deleteLike()
     : this._addLike();
     this._setCountLikes(item.likes);
+  }
+
+  _rendererUserLike() {
+    this._likes.forEach(user => {
+      user._id === this._userId
+      ? this._addLike()
+      : this._deleteLike();
+    })
   }
 
   _isOwner() {
@@ -87,9 +87,9 @@ export default class Card {
     this._cardTitle.textContent = this.name;
     this._cardImage.alt = `Фото ${this.name}.`;
 
-    this._setEventListeners();
-    this._setCountLikes(this._likes);
     this._rendererUserLike();
+    this._setCountLikes(this._likes);
+    this._setEventListeners();
     this._isOwner();
 
     return this._card;
