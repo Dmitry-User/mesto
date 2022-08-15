@@ -9,11 +9,11 @@ export default class Card {
       handleDeleteCard,
       handleLike
     ) {
-    this._likes = likes;
-    this.link = link;
     this.name = name;
-    this._owner = owner;
+    this.link = link;
+    this._likes = likes;
     this.cardId = _id;
+    this._owner = owner;
     this._userId = userId;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
@@ -30,17 +30,16 @@ export default class Card {
     return cardElement;
   }
 
+  isLiked() {
+    return this._buttonLike.classList.contains('card__like_active');
+  }
+
   _addLike() {
     this._buttonLike.classList.add('card__like_active');
   }
 
   _deleteLike() {
     this._buttonLike.classList.remove('card__like_active');
-  }
-
-  isLiked() {
-    const likeActive = this._buttonLike.classList.contains('card__like_active');
-    return likeActive;
   }
 
   _setCountLikes(item) {
